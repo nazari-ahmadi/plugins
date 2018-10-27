@@ -1,0 +1,105 @@
+{% if send %}
+    <form id="frm" class="form-signup " data-request="onSMSActivate" role="form" data-request-flash>
+        <input type="hidden" name="mobile" value="{{mobile}}">
+
+        <div class="row">
+            <div class="col-sm-12 text-center m-b-20">فعال سازی حساب</div>
+        </div>
+
+        <div class="append-icon">
+            <input type="text" name="code" id="code" class="form-control form-white" placeholder="کد تأیید" >
+            <i class="icon-lock"></i>
+        </div>
+
+        <button type="submit" id="submit-form" class="btn btn-lg btn-dark m-t-10" data-style="expand-left"><spna class="icon-lock-open"></spna> فعال سازی</button>
+
+        <p class="f-13 c-orange text-center m-t-20">
+            در صورتی که کد فعال سازی را تا یک دقیقه دیگر دریافت نکردید روی ارسال مجدد کد فعال سازی کلیک کنید
+        </p>
+
+        <p class="f-20 c-orange text-center m-t-20 showTimer"><span class="f-40 c-orange timer">60</span> ثانیه</p>
+
+        <button type="button" id="submit-form" class="btn btn-lg btn-primary m-t-20 m-b-10 disabled btnTrySendCode" data-style="expand-left">ارسال مجدد کد فعال سازی</button>
+    </form>
+    {% put scripts %}
+    <script>
+        time = 59;
+        setInterval(
+            function(){
+                $(".timer").html(time);
+                time -= 1;
+                if(time == -1)
+                {
+                    $(".showTimer").hide();
+                    $(".btnTrySendCode").removeClass('disabled');
+                }
+        }, 1000);
+
+        $(".btnTrySendCode").click(function(){
+            location.reload();
+        });
+    </script>
+    {% endput %}
+{% else %}
+    <form id="frm" class="form-signup " data-request="onSendSMSActivateCode" role="form" data-request-flash>
+        <div class="row">
+            <div class="col-sm-12 text-center m-b-20">ارسال کد فعال سازی</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="btn-group" style="margin-right: 0;width: 100%;">
+                    <input type="text" name="mobile" class="form-control form-white input-text" style="width: 75.145%; float: right;text-align: left;">
+                    <div class="btn-group" style="width: 25%;">
+                        <input type="hidden" name="country_code" value="{{countryCodeDefault.code}}" />
+                        <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" style="padding: 8px 12px;height: 41px;width: 100%;margin: 0;">
+                            <span class="countryCode" dir="ltr">{{countryCodeDefault.code}}</span> 
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                          {% for item in countryCodes %}
+                            <li class="countryLink {% if item.is_default %}active{% endif %}">
+                                <a href="javascript:;" data-code="{{item.code}}">
+                                    {{item.name}}
+                                </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                    </div>
+                </div>    
+            </div>   
+        </div>
+
+        <button type="submit" id="submit-form" class="btn btn-lg btn-dark m-t-10" data-style="expand-left"><spna class="icon-lock-open"></spna> ارسال کد فعال سازی</button>
+
+        <div class="clearfix">
+            <p class="pull-left m-t-20"><a href="{{ 'user/register'|page }}">بازگشت به فرم ثبت نام</a></p>
+        </div>
+    </form>
+    {% put scripts %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".countryLink").click(function(){
+                code = $(this).find("a").attr("data-code");
+                $(".countryCode").text(code);
+                $("input[name=country_code]").val(code);
+                $(".countryLink").removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+    </script>
+    {% endput %}
+{% endif %}
+{% put styles %}
+<style type="text/css">
+    .select2-container .select2-choice .select2-arrow{width:18px;}
+    li.active a{color:#fff !important;}
+
+    @media (min-width: 768px)
+    {
+        .container{
+            width: 750px !important;
+        }
+    }    
+</style>
+{% endput %}

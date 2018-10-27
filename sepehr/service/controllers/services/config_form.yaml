@@ -1,0 +1,17 @@
+name: 'سرویس پست'
+modelClass: Sepehr\Service\Models\Service
+form: $/sepehr/service/models/service/fields.yaml
+defaultRedirect: sepehr/service/services
+create:
+    title: 'ایجاد سرویس جدید'
+    redirect: 'sepehr/service/services/update/:id'
+    redirectClose: sepehr/service/services
+    flashSave: 'سرویس جدید با موفقیت ایجاد شد'
+update:
+    title: 'ویرایش سرویس'
+    redirect: sepehr/service/services
+    redirectClose: sepehr/service/services
+    flashSave: 'سرویس با موفقیت ویرایش شد'
+    flashDelete: 'سرویس با موفقیت حذف شد'
+preview:
+    title: 'پیش نمایش سرویس پست'

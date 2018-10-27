@@ -1,0 +1,17 @@
+name: 'انواع بیمه'
+modelClass: Sepehr\Details\Models\InsuranceType
+form: $/sepehr/details/models/insurancetype/fields.yaml
+defaultRedirect: sepehr/details/insurancetypes
+create:
+    title: 'ایجاد نوع بیمه'
+    redirect: 'sepehr/details/insurancetypes/update/:id'
+    redirectClose: sepehr/details/insurancetypes
+    flashSave: 'نوع بیمه با موفقیت ایجاد شد'
+update:
+    title: 'ویرایش نوع بیمه'
+    redirect: sepehr/details/insurancetypes
+    redirectClose: sepehr/details/insurancetypes
+    flashSave: 'نوع بیمه با موفقیت ویرایش شد'
+    flashDelete: 'نوع بیمه با موفقیت حذف شد'
+preview:
+    title: 'پیش نمایش نوع بیمه'

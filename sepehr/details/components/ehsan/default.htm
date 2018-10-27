@@ -1,0 +1,17 @@
+<form
+        data-request="onRegister"
+        data-request-success="erase()"
+        data-request-flash="جنسیت با موقیت ثبت شد"
+>
+
+    <input type="text" name="name" id="name">
+    <button type="submit"> اضافه کردن</button>
+</form>
+
+
+<script>
+    const erase = () => {
+        const name = document.getElementById('name');
+        name.value = '';
+    }
+</script>

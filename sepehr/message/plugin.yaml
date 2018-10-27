@@ -1,0 +1,6 @@
+plugin:
+    name: 'sepehr.message::lang.plugin.name'
+    description: 'افزونه مدیریت پیام های سیستم'
+    author: sepehr
+    icon: oc-icon-envelope-o
+    homepage: ''

@@ -1,0 +1,118 @@
+<form id="frm" class="form-signup " data-request="onRegister" role="form" data-request-flash>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="append-icon">
+                <input type="text" name="first_name" id="first_name" class="form-control form-white" placeholder="نام"  >
+                <i class="icon-user"></i>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="append-icon">
+                <input type="text" name="lastName" id="lastName" class="form-control form-white" placeholder="نام خانوادگی" >
+                <i class="icon-user"></i>
+            </div>
+        </div>
+    </div>
+    {% if loginAttribute == 'username' %}
+    <div class="append-icon">
+        <input type="text" name="username" id="username" class="form-control form-white" placeholder="کد ملی"  >
+        <i class="icon-badge"></i>
+    </div>
+    {% endif %}
+    <div class="append-icon">
+        <input type="email" name="email" id="email" class="form-control form-white" placeholder="پست الکترونیک (ایمیل)" >
+        <i class="icon-envelope"></i>
+    </div>
+    <div class="append-icon">
+        <input type="password" name="password" id="password" class="form-control form-white" placeholder="رمز عبور" >
+        <i class="icon-lock"></i>
+    </div>
+<!--     <div class="append-icon m-b-20">
+        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control form-white" placeholder="تکرار رمز عبور" >
+        <i class="icon-lock"></i>
+    </div> -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="btn-group" style="margin-right: 0;width: 100%;">
+                <input type="text" name="mobile" class="form-control form-white input-text" style="width: 75.145%; float: right;text-align: left;" placeholder="موبایل">
+                <div class="btn-group" style="width: 25%;">
+                    <input type="hidden" name="country_code" value="{{countryCodeDefault.code}}" />
+                    <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" style="padding: 8px 12px;height: 41px;width: 100%;margin: 0;">
+                        <span class="countryCode" dir="ltr">{{countryCodeDefault.code}}</span> 
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      {% for item in countryCodes %}
+                        <li class="countryLink {% if item.is_default %}active{% endif %}">
+                            <a href="javascript:;" data-code="{{item.code}}">
+                                {{item.name}}
+                            </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                </div>
+            </div>    
+        </div>   
+    </div>
+
+    <button type="submit" id="submit-form" class="btn btn-lg btn-dark m-t-20" data-style="expand-left">ثبت نام</button>
+    <div class="clearfix">
+        <p class="pull-left m-t-20">حساب کاربری دارید؟ <a href="{{ 'user/login'|page }}">فرم ورود</a></p>
+
+    </div>
+    <div class="clearfix">
+
+        <p class="pull-left m-t-10 text-justify">
+            <hr />
+            در صورتی که قبلا ثبت نام کرده اید، ولی سرویس خود را فعال نکرده اید از بخش <a href="{{ 'user/activation'|page }}">فعال سازی عضویت</a> حساب خود را فعال نمائید. </p>
+    </div>    
+</form>
+{% put scripts %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".countryLink").click(function(){
+            code = $(this).find("a").attr("data-code");
+            $(".countryCode").text(code);
+            $("input[name=country_code]").val(code);
+            $(".countryLink").removeClass("active");
+            $(this).addClass("active");
+        });
+    });
+</script>
+{% endput %}
+{% put styles %}
+<style type="text/css">
+    .select2-container .select2-choice .select2-arrow{width:18px;}
+    li.active a{color:#fff !important;}
+
+    ::-webkit-input-placeholder {
+       text-align: right;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       text-align: right;  
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       text-align: right;  
+    }
+
+    :-ms-input-placeholder {  
+       text-align: right; 
+    }
+
+    .rtl .dropdown-menu {
+        right: auto;
+        left: 0;
+        float: right;
+        text-align: left;
+    }
+
+    @media (min-width: 768px)
+    {
+        .container{
+            width: 750px !important;
+        }
+    }    
+</style>
+{% endput %}

@@ -1,0 +1,113 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+tabs:
+    fields:
+        first_name:
+            label: rainlab.user::lang.user.name
+            span: auto  
+            tab: اطلاعات عمومی
+        last_name:
+            label: rainlab.user::lang.user.surname
+            span: auto
+            tab: اطلاعات عمومی
+        country_code:
+            label: rainlab.user::lang.user.country_code
+            span: auto
+            tab: اطلاعات عمومی       
+            type: dropdown
+        mobile:
+            label: rainlab.user::lang.user.mobile
+            span: auto
+            tab: اطلاعات عمومی  
+        national_code:
+            label: rainlab.user::lang.user.national_code
+            span: auto
+            tab: اطلاعات عمومی                                
+        sex_id:
+            label: جنسیت
+            type: dropdown
+            span: auto
+            tab: اطلاعات عمومی
+        addresses:
+            label: آدرس ها
+            prompt: 'اضافه کردن آدرس جدید'
+            span: full
+            type: repeater
+            commentAbove: 'آدرس های مورد نظر را از طریق دکمه زیر وارد کنید.'
+            tab: اطلاعات عمومی
+            form:
+                fields:
+                    address:
+                        label: آدرس
+                        span: auto
+                        type: text
+                    postal_code:
+                        label: 'کد پستی'
+                        span: auto
+                        type: text
+        email:
+            label: rainlab.user::lang.user.email
+            tab: rainlab.user::lang.user.account
+            span: full
+
+        send_invite:
+            type: checkbox
+            label: rainlab.user::lang.user.send_invite
+            comment: rainlab.user::lang.user.send_invite_comment
+            tab: rainlab.user::lang.user.account
+            default: true
+            context: create
+
+        block_mail:
+            label: rainlab.user::lang.user.block_mail
+            tab: rainlab.user::lang.user.account
+            type: checkbox
+            span: full
+            cssClass: field-align-above
+            context: update
+
+        password@create:
+            label: rainlab.user::lang.user.create_password
+            comment: rainlab.user::lang.user.create_password_comment
+            tab: rainlab.user::lang.user.account
+            type: password
+            span: left
+
+        password@update:
+            label: rainlab.user::lang.user.reset_password
+            comment: rainlab.user::lang.user.reset_password_comment
+            tab: rainlab.user::lang.user.account
+            type: password
+            span: left
+
+        password_confirmation:
+            label: rainlab.user::lang.user.confirm_password
+            comment: rainlab.user::lang.user.confirm_password_comment
+            tab: rainlab.user::lang.user.account
+            type: password
+            span: right
+            context: [create, update]
+
+        username:
+            label: rainlab.user::lang.user.username
+            tab: rainlab.user::lang.user.account
+            hidden: true
+            span: left
+
+        groups:
+            label: rainlab.user::lang.user.groups
+            tab: rainlab.user::lang.user.account
+            type: relation
+            emptyOption: rainlab.user::lang.user.empty_groups
+
+secondaryTabs:
+    fields:
+
+        avatar:
+            label: rainlab.user::lang.user.avatar
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: 260

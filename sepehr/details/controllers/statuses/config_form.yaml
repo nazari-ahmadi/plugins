@@ -1,0 +1,17 @@
+name: 'لیست وضعیت ها'
+modelClass: Sepehr\Details\Models\Status
+form: $/sepehr/details/models/status/fields.yaml
+defaultRedirect: sepehr/details/statuses
+create:
+    title: 'ایجاد وضعیت جدید'
+    redirect: 'sepehr/details/statuses/update/:id'
+    redirectClose: sepehr/details/statuses
+    flashSave: 'با موفقیت ثبت شد'
+update:
+    title: 'ویرایش وضعیت'
+    redirect: sepehr/details/statuses
+    redirectClose: sepehr/details/statuses
+    flashSave: 'با موفقیت ویرایش شد'
+    flashDelete: 'با موفقیت حذف شد'
+preview:
+    title: 'پیش نمایش وضعیت ها'

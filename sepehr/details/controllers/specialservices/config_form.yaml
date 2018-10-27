@@ -1,0 +1,17 @@
+name: 'سرویس های ویژه'
+modelClass: Sepehr\Details\Models\SpecialService
+form: $/sepehr/details/models/specialservice/fields.yaml
+defaultRedirect: sepehr/details/specialservices
+create:
+    title: 'ایجاد سرویس ویژه'
+    redirect: 'sepehr/details/specialservices/update/:id'
+    redirectClose: sepehr/details/specialservices
+    flashSave: 'سرویس ویژه با موفقیت ایجاد شد'
+update:
+    title: 'ویرایش سرویس ویژه'
+    redirect: sepehr/details/specialservices
+    redirectClose: sepehr/details/specialservices
+    flashSave: 'سرویس ویژه با موفقیت ویرایش شد'
+    flashDelete: 'سرویس ویژه با موفقیت حذف شد'
+preview:
+    title: 'پیش نمایش سرویس های ویژه'

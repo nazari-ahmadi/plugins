@@ -1,0 +1,17 @@
+name: Acceptances
+modelClass: Sepehr\Details\Models\Acceptance
+form: $/sepehr/details/models/acceptance/fields.yaml
+defaultRedirect: sepehr/details/acceptances
+create:
+    title: 'ایجاد نوع پذیرش'
+    redirect: 'sepehr/details/acceptances/update/:id'
+    redirectClose: sepehr/details/acceptances
+    flashSave: 'با موفقیت ایجاد شد'
+update:
+    title: 'ویرایش نوع پذیرش'
+    redirect: sepehr/details/acceptances
+    redirectClose: sepehr/details/acceptances
+    flashSave: 'با موفقیت ویرایش شد'
+    flashDelete: 'با موفقیت حذف شد'
+preview:
+    title: 'مشاهده لیست انواع پذیرش'

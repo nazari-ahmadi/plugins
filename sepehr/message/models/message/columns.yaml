@@ -1,0 +1,29 @@
+columns:
+    id:
+        label: شناسه
+        type: text
+        searchable: true
+        sortable: true
+        width: 5%
+    description:
+        label: 'متن پیام'
+        type: text
+    manager_id:
+        label: فرستنده
+        type: text
+        searchable: true
+    created_at:
+        label: 'تاریخ ایجاد'
+        type: datetime
+        searchable: true
+        sortable: true
+    updated_at:
+        label: 'تاریخ بروز رسانی'
+        type: datetime
+        searchable: true
+        sortable: true
+    deleted_at:
+        label: 'تاریخ حذف'
+        type: datetime
+        searchable: true
+        sortable: true

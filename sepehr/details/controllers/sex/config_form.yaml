@@ -1,0 +1,17 @@
+name: 'جنسیت ها'
+modelClass: Sepehr\Details\Models\Sex
+form: $/sepehr/details/models/sex/fields.yaml
+defaultRedirect: sepehr/details/sex
+create:
+    title: 'ایجاد جنسیت'
+    redirect: 'sepehr/details/sex/update/:id'
+    redirectClose: sepehr/details/sex
+    flashSave: 'جنسیت با موفقیت ایجاد شد'
+update:
+    title: 'ویرایش جنسیت'
+    redirect: sepehr/details/sex
+    redirectClose: sepehr/details/sex
+    flashSave: 'جنسیت با موفقیت ویرایش شد'
+    flashDelete: 'جنسیت با موفقیت حذف شد'
+preview:
+    title: 'پیش نمایش جنسیت'

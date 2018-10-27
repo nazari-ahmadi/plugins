@@ -1,0 +1,17 @@
+name: 'انواع بسته'
+modelClass: Sepehr\Details\Models\PackageType
+form: $/sepehr/details/models/packagetype/fields.yaml
+defaultRedirect: sepehr/details/packagetypes
+create:
+    title: 'ایجاد نوع بسته'
+    redirect: 'sepehr/details/packagetypes/update/:id'
+    redirectClose: sepehr/details/packagetypes
+    flashSave: 'نوع بسته با موفقیت ایجاد شد'
+update:
+    title: 'ایجاد نوع بسته'
+    redirect: sepehr/details/packagetypes
+    redirectClose: sepehr/details/packagetypes
+    flashSave: 'نوع بسته با موفقیت ویرایش شد'
+    flashDelete: 'نوع بسته با موفقیت حذف  شد'
+preview:
+    title: 'پیش نمایش انواع بسته'

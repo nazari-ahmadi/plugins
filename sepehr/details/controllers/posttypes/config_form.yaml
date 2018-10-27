@@ -1,0 +1,17 @@
+name: 'انواع پست'
+modelClass: Sepehr\Details\Models\PostType
+form: $/sepehr/details/models/posttype/fields.yaml
+defaultRedirect: sepehr/details/posttypes
+create:
+    title: 'ایجاد نوع پست'
+    redirect: 'sepehr/details/posttypes/update/:id'
+    redirectClose: sepehr/details/posttypes
+    flashSave: 'نوع پست با موفقیت ایجاد شد'
+update:
+    title: 'ویرایش نوع پست'
+    redirect: sepehr/details/posttypes
+    redirectClose: sepehr/details/posttypes
+    flashSave: 'نوع پست با موفقیت ویرایش شد'
+    flashDelete: 'نوع پست با موفقیت حذف شد'
+preview:
+    title: 'پیش نمایش نوع پست'

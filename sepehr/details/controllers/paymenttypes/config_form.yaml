@@ -1,0 +1,17 @@
+name: 'انواع روش های پرداخت'
+modelClass: Sepehr\Details\Models\PaymentType
+form: $/sepehr/details/models/paymenttype/fields.yaml
+defaultRedirect: sepehr/details/paymenttypes
+create:
+    title: 'ایجاد روش پرداخت'
+    redirect: 'sepehr/details/paymenttypes/update/:id'
+    redirectClose: sepehr/details/paymenttypes
+    flashSave: 'روش پرداخت با موفقیت ایجاد شد'
+update:
+    title: 'ویرایش روش پرداخت'
+    redirect: sepehr/details/paymenttypes
+    redirectClose: sepehr/details/paymenttypes
+    flashSave: 'روش پرداخت با موفقیت ویرایش شد'
+    flashDelete: 'روش پرداخت با موفقیت حذف شد'
+preview:
+    title: 'پیش نمایش روش پرداخت'

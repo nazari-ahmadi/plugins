@@ -1,0 +1,17 @@
+name: 'پیش شماره کشورها'
+modelClass: Sepehr\Details\Models\CountryCode
+form: $/sepehr/details/models/countrycode/fields.yaml
+defaultRedirect: sepehr/details/countrycodes
+create:
+    title: 'ایجاد پیش شماره'
+    redirect: 'sepehr/details/countrycodes/update/:id'
+    redirectClose: sepehr/details/countrycodes
+    flashSave: 'پیش شماره با موفقیت ایجاد شد'
+update:
+    title: 'ایجاد پیش شماره'
+    redirect: sepehr/details/countrycodes
+    redirectClose: sepehr/details/countrycodes
+    flashSave: 'پیش شماره با موفقیت ویرایش شد'
+    flashDelete: 'پیش شماره با موفقیت حذف شد'
+preview:
+    title: 'پیش نمایش'

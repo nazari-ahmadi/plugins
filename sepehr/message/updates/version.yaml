@@ -1,0 +1,5 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table sepehr_message_index'
+    - builder_table_create_sepehr_message_index.php

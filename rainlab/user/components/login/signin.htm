@@ -1,0 +1,24 @@
+<form class="form-signin" role="form" data-request="onSignin" data-request-flash>
+    <div class="append-icon">
+
+        <input name="{{loginAttribute}}" id="username" class="form-control form-white username" 
+          {% if loginAttribute == 'username' %}type="text"{% elseif loginAttribute == 'email' %}type="email"{% endif %}
+          {% if loginAttribute == 'username' %}placeholder="نام کاربری"{% elseif loginAttribute == 'email' %}placeholder="ایمیل"{% endif %}>
+        {% if loginAttribute == 'username' %}
+            <i class="icon-badge"></i>
+        {% elseif loginAttribute == 'email' %}
+            <i class="icon-envelope"></i>
+        {% endif %}
+    </div>
+    <div class="append-icon m-b-20">
+        <input type="password" name="password" class="form-control form-white password" placeholder="رمز عبور">
+        <i class="icon-lock"></i>
+    </div>
+    <button type="submit" id="submit_login" name="btnSubmit" class="btn btn-lg btn-danger btn-block ladda-button" data-style="expand-left">ورود</button>
+    <div class="clearfix">
+        <p class="pull-left m-t-20"><a id="" href="{{'user/resetPassword'|page}}">رمز عبور خود را فراموش کرده اید؟</a></p>
+    </div>
+    <div class="clearfix">
+        <p class="pull-left m-t-20">اگر حساب کاربری ندارید <a id="" href="{{'user/register'|page}}">ثبت نام</a> کنید.</p>
+    </div>    
+</form>

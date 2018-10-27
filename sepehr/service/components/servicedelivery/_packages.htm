@@ -1,0 +1,84 @@
+{% if packages %}
+    <table class="table table-hover dataTable" id="table2">
+        <thead>
+        <tr>
+            <th>ردیف</th>
+            <th>کد پستی مقصد</th>
+            <th>آدرس مقصد</th>
+            <th>نوع ارسال</th>
+            <th>نوع بسته</th>
+            <th>وزن</th>
+            <th>هزینه بسته</th>
+            <th>عملیات</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set cnt = 1 %}
+        {% for key,item in packages %}
+
+            <tr>
+                <td>{{ cnt }}</td>
+                <td>{{ item.receiver_postal_code }}</td>
+                <td>{{ item.receiver_address }}</td>
+                <td>{{ service.getPostType(item.post_type_id) }}</td>
+                <td>{{ service.getPackageType(item.package_type_id) }}</td>
+                <td>{{ item.weight }}</td>
+                <td>{{ item.price }}</td>
+                <td>
+                    <a
+                            href="#"
+                            class="btn btn-default btnEdit"
+                            data-toggle="modal"
+                            data-target="#package-modal"
+                            data-id="{{ key }}"
+
+                    >
+                        {#<i class="fa fa-edit"></i>#}
+                        اصلاح اطلاعات
+                    </a>
+
+                    <a
+                            href="#"
+                            class="btn btn-danger"
+                            {#data-request="{{ RequestService::onPackageDelete }}"#}
+                            data-request-data="id:{{ key }}"
+                            data-request-confirm="آیا از حذف بسته مطمئن هستید؟"
+                            data-request-update="'{{ __SELF__ }}::_packages':'.showPackages'"
+                    >
+                        {#<i class="fa fa-trash"></i>#}
+                        عدم تایید
+                    </a>
+                </td>
+            </tr>
+            {% set cnt = cnt + 1 %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".btnEdit").click(function () {
+
+            id = $(this).attr('data-id');
+            $("input[name='package_id']").val(id);
+
+             packages={{ packages|json_encode|raw }};
+            $("input[name='receiver_postal_code']").val(packages[id].receiver_postal_code);
+            $("input[name='receiver_address']").val(packages[id].receiver_address);
+            $("input[name='weight']").val(packages[id].weight);
+            $("select[name='post_type_id']").val(packages[id].post_type_id).change();
+            $("select[name='package_type_id']").val(packages[id].package_type_id).change();
+            $("select[name='insurance_type_id']").val(packages[id].insurance_type_id).change();
+            $("select[name='distribution_time_id']").val(packages[id].distribution_time_id).change();
+            $("select[name='special_services_id']").val(packages[id].special_services_id).change();
+
+            $('#package-modal').find('.modal-title').text('فرم ویرایش بسته');
+            $('#package-modal').find('#btn-edit').removeClass('hide');
+            $('#package-modal').find('#btn-save').addClass('hide');
+
+        });
+    });
+
+
+</script>

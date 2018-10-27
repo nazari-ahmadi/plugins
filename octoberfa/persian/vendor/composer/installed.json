@@ -1,0 +1,39 @@
+[
+    {
+        "name": "cssjanus/cssjanus",
+        "version": "v1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cssjanus/php-cssjanus.git",
+            "reference": "0fd44d8a3f1f0f10bfb500b6b595240bf6415ffa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/cssjanus/php-cssjanus/zipball/0fd44d8a3f1f0f10bfb500b6b595240bf6415ffa",
+            "reference": "0fd44d8a3f1f0f10bfb500b6b595240bf6415ffa",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "jakub-onderka/php-parallel-lint": "0.8.*",
+            "phpunit/phpunit": "4.8.*",
+            "squizlabs/php_codesniffer": "2.3.*"
+        },
+        "time": "2017-03-14 20:57:08",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "description": "Convert CSS stylesheets between left-to-right and right-to-left."
+    }
+]

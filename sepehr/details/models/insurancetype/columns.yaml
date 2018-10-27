@@ -1,0 +1,12 @@
+columns:
+    id:
+        label: کد
+        type: number
+        searchable: true
+        sortable: true
+        width: 5%
+    name:
+        label: عنوان
+        type: text
+        searchable: true
+        sortable: true

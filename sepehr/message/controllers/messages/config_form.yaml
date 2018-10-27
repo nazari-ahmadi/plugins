@@ -1,0 +1,17 @@
+name: 'پیام ها'
+modelClass: Sepehr\Message\Models\Message
+form: $/sepehr/message/models/message/fields.yaml
+defaultRedirect: sepehr/message/messages
+create:
+    title: 'ایجاد پیام'
+    redirect: 'sepehr/message/messages/update/:id'
+    redirectClose: sepehr/message/messages
+    flashSave: 'پیام با موفقیت ایجاد شد'
+update:
+    title: 'ویرایش پیام'
+    redirect: sepehr/message/messages
+    redirectClose: sepehr/message/messages
+    flashSave: 'پیام با موفقیت ویرایش شد'
+    flashDelete: 'پیام با موفقیت حذف شد'
+preview:
+    title: 'پیش نمایش پیام ها'

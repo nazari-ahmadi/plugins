@@ -1,0 +1,14 @@
+columns:
+    id:
+        label: کد
+        type: number
+        width: 5%
+    name:
+        label: عنوان
+        type: text
+    code:
+        label: 'پیش شماره'
+        type: text
+    placeholder:
+        label: توضیحات
+        type: text

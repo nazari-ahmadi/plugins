@@ -1,0 +1,39 @@
+<?= Block::put('sidepanel') ?>
+<?php if(!$this->fatalError): ?>
+<?= $this->makePartial('../index/sidepanel')?>
+<?php endif?>
+<?= Block::endPut()?>
+
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('sepehr/details/countrycodes') ?>">لیست</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+
+<?= Block::put('body') ?>
+
+    <?php if (!$this->fatalError): ?>
+
+        <div class="form-preview">
+            <?= $this->formRenderPreview() ?>
+        </div>
+
+    <?php else: ?>
+        <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <?php endif ?>
+
+    <p>
+        <a href="<?= Backend::url('sepehr/details/countrycodes') ?>" class="btn btn-default oc-icon-chevron-left">
+            <?= e(trans('backend::lang.form.return_to_list')) ?>
+        </a>
+    </p>
+
+    <script>
+        $(document).ready(function () {
+            $("#countryCodes").addClass("active");
+        });
+    </script>
+
+<?= Block::endPut() ?>

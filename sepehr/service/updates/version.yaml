@@ -1,0 +1,14 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table sepehr_service_index'
+    - builder_table_create_sepehr_service_index.php
+1.0.3:
+    - 'Updated table sepehr_service_index'
+    - builder_table_update_sepehr_service_index.php
+1.0.4:
+    - 'Updated table sepehr_service_index'
+    - builder_table_update_sepehr_service_index_2.php
+1.0.5:
+    - 'Updated table sepehr_service_index'
+    - builder_table_update_sepehr_service_index_3.php

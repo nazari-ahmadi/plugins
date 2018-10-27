@@ -1,0 +1,34 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table sepehr_details_sex'
+    - builder_table_create_sepehr_details_sex.php
+1.0.3:
+    - 'Created table sepehr_details_payment_type'
+    - builder_table_create_sepehr_details_payment_type.php
+1.0.4:
+    - 'Created table sepehr_details_distribution_time'
+    - builder_table_create_sepehr_details_distribution_time.php
+1.0.5:
+    - 'Created table sepehr_details_package_type'
+    - builder_table_create_sepehr_details_package_type.php
+    - 'Created table sepehr_details_special_service'
+    - builder_table_create_sepehr_details_special_service.php
+1.0.6:
+    - 'Created table sepehr_details_post_type'
+    - builder_table_create_sepehr_details_post_type.php
+1.0.7:
+    - 'Created table sepehr_details_insurance_type'
+    - builder_table_create_sepehr_details_insurance_type.php
+1.0.8:
+    - 'Created table sepehr_details_country_code'
+    - builder_table_create_sepehr_details_country_code.php
+1.0.9:
+    - 'Updated table sepehr_details_country_code'
+    - builder_table_update_sepehr_details_country_code.php
+1.0.10:
+    - 'Created table sepehr_details_status'
+    - builder_table_create_sepehr_details_status.php
+1.0.11:
+    - 'Created table sepehr_details_acceptance'
+    - builder_table_create_sepehr_details_acceptance.php

@@ -1,0 +1,17 @@
+name: 'انواع زمان توزیع'
+modelClass: Sepehr\Details\Models\DistributionTime
+form: $/sepehr/details/models/distributiontime/fields.yaml
+defaultRedirect: sepehr/details/distributiontimes
+create:
+    title: 'ایجاد نوع زمان توزیع'
+    redirect: 'sepehr/details/distributiontimes/update/:id'
+    redirectClose: sepehr/details/distributiontimes
+    flashSave: 'زمان توزیع با موفقیت ایچاد شد'
+update:
+    title: 'ویرایش زمان توزیع'
+    redirect: sepehr/details/distributiontimes
+    redirectClose: sepehr/details/distributiontimes
+    flashSave: 'زمان توزیع با ویزایش ایچاد شد'
+    flashDelete: 'زمان توزیع با حذف ایچاد شد'
+preview:
+    title: 'پیش نمایش انواع زمان توزیع'

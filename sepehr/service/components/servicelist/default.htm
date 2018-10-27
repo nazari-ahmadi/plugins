@@ -1,0 +1,63 @@
+{% if lists %}
+    <div class="col-md-12">
+        <h2 class="col-md-9">
+            لیست درخواست های ثبت شده
+        </h2>
+        <a class="btn btn-info col-md-2 center" style="text-align: center" href="/post/request-package">ثبت سرویس جدید</a>
+
+    </div>
+    <p>
+        <br>
+        <br>
+        <br>
+    </p>
+    <table class="table table-hover dataTable" id="table2">
+        <thead>
+        <tr>
+            <th>ردیف</th>
+            <th>کد پستی مبدا</th>
+            <th>آدرس مبدا</th>
+            <th>وضعیت تراکنش</th>
+            <th>تاریخ درخواست</th>
+            <th>عملیات</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set cnt = 1 %}
+        {% for key,item in lists %}
+
+            <tr>
+                <td>{{ cnt }}</td>
+                <td>{{ item.sender_postal_code }}</td>
+                <td>{{ item.sender_address }}</td>
+                <td>{{ service.getStatus(item.status_id) }}</td>
+                <td>{{ item.created_at }}</td>
+                <td>
+                    <a
+                            href="{{ url('serviceupdate') ~ '/' ~ item.id }}"
+                            class="btn btn-default btnEdit"
+                            {#data-request="onServiceUpdate"#}
+                            {#data-request-data="id:{{ item.id }}"#}
+                    >
+                        <i class="fa fa-edit"></i>
+                    </a>
+
+                    <a
+                            href="#"
+                            class="btn btn-default"
+                            data-request="onServiceDelete"
+                            data-request-data="id:{{ item.id }}"
+                            data-request-confirm="آیا از حذف سرویس مطمئن هستید؟"
+                            {#data-request-update="'{{ __SELF__ }}::_packages':'.showPackages'"#}
+                    >
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% set cnt = cnt + 1 %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+

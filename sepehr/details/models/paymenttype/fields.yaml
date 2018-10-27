@@ -1,0 +1,5 @@
+fields:
+    name:
+        label: عنوان
+        span: auto
+        type: text

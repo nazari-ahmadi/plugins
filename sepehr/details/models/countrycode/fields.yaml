@@ -1,0 +1,17 @@
+fields:
+    name:
+        label: 'عنوان کشور'
+        span: auto
+        type: text
+    code:
+        label: 'پیش شماره کشور'
+        span: auto
+        type: text
+    placeholder:
+        label: توضیحات
+        span: full
+        type: text
+    is_default:
+        label: 'کد پیش فرض'
+        span: auto
+        type: switch

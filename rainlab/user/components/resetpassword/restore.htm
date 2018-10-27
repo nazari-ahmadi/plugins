@@ -1,0 +1,14 @@
+<p class="lead">
+    <strong>رمز عبور خود را فراموش کرده اید؟</strong> اشکالی ندارد! ایمیل خود را وارد کنید.
+</p>
+
+<form
+    data-request="{{ __SELF__ }}::onRestorePassword"
+    data-request-update="'{{ __SELF__ }}::reset': '#partialUserResetForm'">
+    <div class="form-group">
+        <label for="userRestoreEmail">ایمیل</label>
+        <input name="email" type="email" class="form-control" id="userRestoreEmail" placeholder="ایمیل خود را وارد کنید...">
+    </div>
+
+    <button type="submit" class="btn btn-default">بازنشانی رمز عبور</button>
+</form>

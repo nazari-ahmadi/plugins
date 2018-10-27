@@ -1,0 +1,7 @@
+<div id="partialUserResetForm" style="margin-top: 70px">
+    {% if __SELF__.code == null %}
+        {% partial __SELF__ ~ '::restore' %}
+    {% else %}
+        {% partial __SELF__ ~ '::reset' %}
+    {% endif %}
+</div>

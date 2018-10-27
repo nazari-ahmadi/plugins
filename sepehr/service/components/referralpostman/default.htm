@@ -1,0 +1,62 @@
+{% if lists %}
+    <div class="col-md-12">
+        <h2 class="col-md-9">
+            لیست سرویس های ارجاع شده
+        </h2>
+        <a style="text-align: center" class="btn btn-info col-md-2 center" href="/post/postman-services">سرویس های در دست اقدام</a>
+
+    </div>
+    <p>
+        <br>
+        <br>
+        <br>
+    </p>
+    <table class="table table-hover dataTable" id="table2">
+        <thead>
+        <tr>
+            <th>ردیف</th>
+            <th>کد پستی مبدا</th>
+            <th>آدرس مبدا</th>
+            <th>وضعیت تراکنش</th>
+            <th>تاریخ درخواست</th>
+            <th>عملیات</th>
+        </tr>
+        </thead>
+        <tbody class="{{ lists[0].id ? '' : 'hide' }}" id="body">
+        {% set cnt = 1 %}
+        {% for key,item in lists %}
+
+            <tr class="{{ item.status_id==3 ? 'bg-success' : '' }}">
+                <td>{{ cnt }}</td>
+                <td>{{ item.sender_postal_code }}</td>
+                <td>{{ item.sender_address }}</td>
+                <td>{{ item.status_id!='' ? service.getStatus(item.status_id) : '' }}</td>
+                <td>{{ item.created_at }}</td>
+                <td>
+                    <a
+                            href="#"
+                            class="btn btn-success btnEdit"
+                            data-request="onAcceptService"
+                            data-request-data="id:{{ item.id }}"
+                    >
+                        <i class="fa fa-edit"></i>پذیرش
+                    </a>
+
+                    <a
+                            href="#"
+                            class="btn btn-danger"
+                            data-request="onRejectService"
+                            data-request-data="id:{{ item.id }}"
+                            data-request-confirm="آیا از عدم پذیرش سرویس مطمئن هستید؟"
+                            {#data-request-update="'{{ __SELF__ }}::_packages':'.showPackages'"#}
+                    >
+                        عدم پذیرش
+                    </a>
+                </td>
+            </tr>
+            {% set cnt = cnt + 1 %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+

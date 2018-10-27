@@ -1,0 +1,231 @@
+{% put scripts %}
+    <!-- BEGIN PAGE SCRIPTS -->
+    <script src="{{ 'assets/users/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js'|theme }}"></script>
+    <script src="{{ 'assets/users/plugins/bootstrap-datepicker/js/bootstrap-datepicker.fa.min.js'|theme }}"></script>
+    <!-- END PAGE SCRIPTS -->
+{% endput %}
+
+{{ form_ajax('onUpdate',{ model: user , class: 'form-horizontal', 'data-request-flash': true}) }}
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 ">
+          <div class="panel">
+            <div class="panel-header">
+              <h3><strong>اطلاعات پروفایل</strong></h3>
+              <div class="control-btn">
+                <!-- <a href="#" class="panel-toggle"><i class="fa fa-angle-down"></i></a> -->
+              </div>              
+            </div>
+            <div class="panel-content">
+                <ul class="nav nav-tabs nav-primary">                    
+                    <li class="active"><a href="#tab2_2" data-toggle="tab"><i class="icon-user"></i> اطلاعات فردی</a></li>
+                    <li class=""><a href="#tab2_1" data-toggle="tab"><i class="icon-lock"></i> اطلاعات حساب</a></li>
+                    <li><a href="#tab2_4" data-toggle="tab"><i class="fa fa-warning"></i> غیر فعال کردن حساب کاربری</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade" id="tab2_1">
+                        <div class="row column-seperation">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label class="col-sm-4 control-label">رمز عبور فعلی</label>
+                                      <div class="col-sm-8">
+                                        <input type="password" name="current_password" id="current_password" class="form-control" placeholder="رمز عبور فعلی خود را وارد کنید...">
+                                      </div>
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label class="col-sm-4 control-label">رمز عبور جدید</label>
+                                      <div class="col-sm-8">
+                                        <input type="password" name="password" class="form-control" placeholder="رمز عبور جدید خود را وارد کنید...">
+                                      </div>
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label class="col-sm-4 control-label">تأیید رمز عبور جدید</label>
+                                      <div class="col-sm-8">
+                                        <input type="password" name="password_confirmation" class="form-control" placeholder="رمز عبور جدید خود را تأیید کنید...">
+                                      </div>
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="tab-pane fade active in" id="tab2_2">
+                        <div class="row column-seperation">
+                            <div class="col-md-12">
+                                {% component 'imageUploader' %}
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="col-sm-12 control-label" style="margin-bottom: 15px">نام</label>
+                                  <div class="col-sm-12">
+                                    <input type="text" name="firstName" id="firstName" class="form-control" placeholder="نام خود را وارد کنید..." value="{{ form_value('firstName') }}">
+                                  </div>
+                                </div>
+                                <div class="btn-group" style="margin-right: 0;width: 100%;">
+                                  <label class="col-sm-12 control-label" style="margin-bottom: 15px;padding: 0;">شماره موبایل</label>
+                                    <input type="text" name="mobileNumber" class="form-control input-text" style="width: 75.145%; float: right;text-align: left;" placeholder="شماره موبایل خود را وارد کنید..." value="{{ form_value('mobile') }}">
+                                    <div class="btn-group" style="width: 25%;">
+                                        <input type="hidden" name="countryCode" value="{{countryCodeDefault.code}}" />
+                                        <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" style="padding: 8px 12px;height: 41px;width: 100%;margin: 0;">
+                                            <span class="countryCode" dir="ltr">{{countryCodeDefault.code}}</span> 
+                                            <i class="fa fa-angle-down" style="float: none;"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                          {% for item in countryCodes %}
+                                            <li class="countryLink {% if item.is_default %}active{% endif %}">
+                                                <a href="javascript:;" data-code="{{item.code}}">
+                                                    {{item.name}}
+                                                </a>
+                                            </li>
+                                          {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>   
+
+                                <div class="form-group">
+                                  <label class="col-sm-12 control-label" style="margin-bottom: 15px">نام پدر</label>
+                                  <div class="col-sm-12">
+                                    <input type="text" name="fatherName" class="form-control" placeholder="نام پدر خود را وارد کنید..." value="{{ form_value('fatherName') }}">
+                                  </div>
+                                </div>    
+                                <div class="form-group">
+                                  <label class="col-sm-12 control-label" style="margin-bottom: 15px">تاریخ تولد</label>
+                                  <div class="col-sm-12">
+                                    <input type="text" name="birth_date" class="date-picker form-control" placeholder="تاریخ تولد..." value="{{ form_value('birth_date')|pDate('Y/m/d') }}">
+                                  </div>
+                                </div>                                                 
+                                <div class="form-group">
+                                  <label class="col-sm-12 control-label" style="margin-bottom: 15px">منطقه جغرافیایی</label>
+                                  <div class="col-sm-12">
+                                      <select class="form-control" name="location_id">
+                                        <option value=" ">انتخاب کنید</option>
+                                        {% for item in locations %}
+                                          {% if not item.parent_id and item.nest_depth == 0 %}
+                                            <optgroup label="{{ item.name }}">  
+                                          {% else %}                                        
+                                              <option value="{{ item.id }}" {{ form_value('location_id') == item.id ? 'selected' }}>{{ item.name }}</option>
+                                          {% endif %}
+                                        {% endfor %}
+                                      </select>
+                                  </div>
+                                </div> 
+                            </div>  
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="col-sm-12 control-label" style="margin-bottom: 15px">نام خانوادگی</label>
+                                  <div class="col-sm-12">
+                                    <input type="text" name="lastName" id="lastName" class="form-control" placeholder="نام خانوادگی خود را وارد کنید..." value="{{ form_value('lastName') }}">
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-12 control-label" style="margin-bottom: 15px">کد ملی</label>
+                                  <div class="col-sm-12">
+                                    <input type="text" name="national_code" class="form-control" placeholder="کد ملی خود را وارد کنید..." value="{{ form_value('national_code') }}">
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-12 control-label" style="margin-bottom: 15px">شماره شناسنامه</label>
+                                  <div class="col-sm-12">
+                                    <input type="text" name="birthCertificateCode" class="form-control" placeholder="شماره شناسنامه خود را وارد کنید..." value="{{ form_value('birthCertificateCode') }}">
+                                  </div>
+                                </div> 
+                                                                <div class="form-group">
+                                  <label class="col-sm-12 control-label"  style="margin-bottom: 15px">جنسیت</label>
+                                  <div class="col-sm-12">
+                                      <select class="form-control" name="sex_id" data-style="white" data-search="true">
+                                        <option value=" ">انتخاب کنید</option>
+                                        {% for item in sex %}
+                                        <option value="{{ item.id }}" {{ form_value('sex_id') == item.id ? 'selected' }}>{{ item.name }}</option>
+                                        {% endfor %}
+                                      </select>
+                                  </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab2_4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <h3>حساب خود را غیر فعال کنید؟</h3>
+                                    <p>
+                                        حساب کاربری شما غیر فعال می شود و اطلاعات شما از سایت حذف می شود. هر زمانی که دوباره وارد حساب خود شوید حساب شما فعال می شود .
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" style="text-align:right;">
+                                        <label class="col-sm-7 control-label">برای ادامه لطفا رمز عبور خود را وارد کنید:</label>
+                                        <div class="col-sm-5">
+                                            <input type="password" name="deactive_password" class="form-control" id="accountDeletePassword" placeholder="رمز عبور">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="text-align:center;margin:20px 0;">
+                                    <button type="button" class="btn btn-danger" data-request="onDeactivate" data-request-confirm="آیا مطمئن هستید برای غیر فعال کردن حساب؟">
+                                        تأیید غیر فعال کردن حساب
+                                    </button>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="row column-seperation">
+                    <div class="col-md-12" style="text-align:center;">
+                        <button type="submit" class="btn btn-primary btn-embossed" style="width:150px;">ذخیره</button>                    
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>        
+    </div>
+</div>
+{{ form_close() }}
+
+{% put scripts %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".countryLink").click(function(){
+            code = $(this).find("a").attr("data-code");
+            $(".countryCode").text(code);
+            $("input[name=countryCode]").val(code);
+            $(".countryLink").removeClass("active");
+            $(this).addClass("active");
+        });
+    });
+</script>
+{% endput %}
+
+{% put styles %}
+<style type="text/css">
+    ::-webkit-input-placeholder {
+       text-align: right;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       text-align: right;  
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       text-align: right;  
+    }
+
+    :-ms-input-placeholder {  
+       text-align: right; 
+    }
+
+    .rtl .dropdown-menu {
+        right: auto;
+        left: 0;
+        float: right;
+        text-align: left;
+    }  
+</style>
+{% endput %}

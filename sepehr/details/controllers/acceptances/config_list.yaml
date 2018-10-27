@@ -1,0 +1,12 @@
+title: 'لیست نوع پذیرش'
+modelClass: Sepehr\Details\Models\Acceptance
+list: $/sepehr/details/models/acceptance/columns.yaml
+recordUrl: 'sepehr/details/acceptances/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 20
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

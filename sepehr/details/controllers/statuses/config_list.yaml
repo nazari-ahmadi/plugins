@@ -1,0 +1,12 @@
+title: 'لیست وضعیت ها'
+modelClass: Sepehr\Details\Models\Status
+list: $/sepehr/details/models/status/columns.yaml
+recordUrl: 'sepehr/details/statuses/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 20
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

@@ -1,0 +1,17 @@
+columns:
+    id:
+        label: کد
+        type: text
+        width: 5%
+    user_id:
+        label: user_id
+        type: text
+    manager_id:
+        label: manager_id
+        type: text
+    operator_id:
+        label: operator_id
+        type: text
+    payment_type_id:
+        label: payment_type_id
+        type: text

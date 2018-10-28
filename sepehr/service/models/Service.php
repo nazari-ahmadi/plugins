@@ -13,6 +13,7 @@ use Sepehr\Details\Models\PostType;
 use Sepehr\Details\Models\Status;
 use Sepehr\Details\Models\Acceptance;
 use Sepehr\Details\Models\SpecialService;
+use Sepehr\Details\Models\Weight;
 
 /**
  * Model
@@ -54,7 +55,7 @@ class Service extends Model
             $this->rules['packages.' . $key . '.receiver_postal_code'] = 'required';
             $this->rules['packages.' . $key . '.receiver_address'] = 'required';
             $this->rules['packages.' . $key . '.post_type_id'] = 'required';
-            $this->rules['packages.' . $key . '.weight'] = 'required';
+            $this->rules['packages.' . $key . '.weight_id'] = 'required';
             $this->rules['packages.' . $key . '.package_type_id'] = 'required';
             $this->rules['packages.' . $key . '.insurance_type_id'] = 'required';
 
@@ -62,7 +63,7 @@ class Service extends Model
             $this->customMessages['packages.' . $key . '.receiver_postal_code.required'] = 'لطفا کد پستی گیرنده را وارد نمایید';
             $this->customMessages['packages.' . $key . '.receiver_address.required'] = 'لطفا آدرس گیرنده را وارد نمایید';
             $this->customMessages['packages.' . $key . '.post_type_id.required'] = 'لطفا نوع پست را انتخاب نمایید';
-            $this->customMessages['packages.' . $key . '.weight.required'] = 'لطفا وزن مرسوله را وارد نمایید';
+            $this->customMessages['packages.' . $key . '.weight_id.required'] = 'لطفا وزن مرسوله را انتخاب نمایید';
             $this->customMessages['packages.' . $key . '.package_type_id.required'] = 'لطفا نوع بسته پستی را انتخاب نمایید';
             $this->customMessages['packages.' . $key . '.insurance_type_id.required'] = 'لطفا نوع بیمه را انتخاب نمایید.';
         }
@@ -94,6 +95,16 @@ class Service extends Model
     {
         if ($id != 0) {
             return SpecialService::find($id)->name;
+        } else {
+            return 'انتخاب کنید';
+        }
+    }
+
+
+    public function getWeight($id)
+    {
+        if ($id != 0) {
+            return Weight::find($id)->name;
         } else {
             return 'انتخاب کنید';
         }
@@ -190,9 +201,14 @@ class Service extends Model
         $lists = FrontUser::lists('first_name', 'id');
         $list = [' ' => 'انتخاب کنید'] + $lists;
         return $list;
-
     }
 
+    public function getWeightIdOptions()
+    {
+        $lists = Weight::lists('name', 'id');
+        $list = [' ' => 'انتخاب کنید'] + $lists;
+        return $list;
+    }
 
     public function getStatusIdOptions()
     {
@@ -206,6 +222,7 @@ class Service extends Model
         $list = Acceptance::lists('name', 'id');
         return $list;
     }
+
     /**
      * @var string The database table used by the model.
      */

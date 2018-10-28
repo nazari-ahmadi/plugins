@@ -29,6 +29,10 @@ tabs:
                         label: 'آدرس مقصد'
                         span: auto
                         type: text
+                    weight_id:
+                        label: وزن
+                        span: auto
+                        type: dropdown
                     post_type_id:
                         label: 'نحوه ارسال'
                         span: auto
@@ -37,10 +41,6 @@ tabs:
                         label: 'بازه تحویل بسته پستی'
                         span: auto
                         type: dropdown
-                    weight:
-                        label: 'وزن مرسوله'
-                        span: auto
-                        type: number
                     special_services_id:
                         label: 'خدمات ویژه'
                         span: auto

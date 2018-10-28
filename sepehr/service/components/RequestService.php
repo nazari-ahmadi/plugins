@@ -12,6 +12,7 @@ use Sepehr\Details\Models\PaymentType;
 use Sepehr\Details\Models\PostType;
 use Sepehr\Details\Models\SpecialService;
 use Sepehr\Details\Models\Status;
+use Sepehr\Details\Models\Weight;
 use Sepehr\Service\Models\Service;
 use RainLab\User\Models\User as FrontendUser;
 use Backend\Models\User as BackendUser;
@@ -46,7 +47,7 @@ class RequestService extends ComponentBase
 
     public function preVars()
     {
-        $user=Auth::getUser();
+        $user = Auth::getUser();
         Session::forget('packages');
         $id = $this->property('id');
         if ($id != null) {
@@ -67,6 +68,7 @@ class RequestService extends ComponentBase
         $this->page['specialServices'] = SpecialService::orderBy('name')->get();
         $this->page['packageTypes'] = PackageType::orderBy('name')->get();
         $this->page['statuses'] = Status::orderBy('id')->get();
+        $this->page['weight'] = Weight::orderBy('id')->get();
         $this->page['lists'] = $service;
         $this->page['service'] = new Service();
     }
@@ -87,8 +89,8 @@ class RequestService extends ComponentBase
             throw new ValidationException(['receiver_address' => 'لطفا آدرس گیرنده را وارد کنید.']);
         }
 
-        if (!$weight = post('weight')) {
-            throw new ValidationException(['weight' => 'لطفا وزن مرسوله  را وارد کنید.']);
+        if (!$weight = post('weight_id')) {
+            throw new ValidationException(['weight_id' => 'لطفا وزن مرسوله  را وارد کنید.']);
         }
 
         if (!trim(post('post_type_id'))) {
@@ -115,7 +117,7 @@ class RequestService extends ComponentBase
             'post_type_id' => post('post_type_id'),
             'distribution_time_id' => post('distribution_time_id'),
 
-            'weight' => post('weight'),
+            'weight_id' => post('weight_id'),
             'special_services_id' => post('special_services_id'),
             'price' => post('distribution_time_id'),
             'package_type_id' => post('package_type_id'),
@@ -150,14 +152,14 @@ class RequestService extends ComponentBase
         if (!Session::get('packages')) {
             throw new ValidationException(['' => 'لطفا بسته های مورد نظر خود را وارد کنید.']);
         }
-        $user=Auth::getUser();
+        $user = Auth::getUser();
         $id = $this->property('id');
         if ($id != null) {
             $service = Service::whereUserId($user->id)->find($id);
-            if ($service->status_id >1){
+            if ($service->status_id > 1) {
                 throw new ApplicationException('با توجه به تایید سرویس شما، امکان ویرایش وجود ندارد');
             }
-        }else{
+        } else {
             $service = new Service();
         }
 
@@ -198,8 +200,8 @@ class RequestService extends ComponentBase
             throw new ValidationException(['receiver_address' => 'لطفا آدرس گیرنده را وارد کنید.']);
         }
 
-        if (!$weight = post('weight')) {
-            throw new ValidationException(['weight' => 'لطفا وزن مرسوله  را وارد کنید.']);
+        if (!$weight = post('weight_id')) {
+            throw new ValidationException(['weight_id' => 'لطفا وزن مرسوله  را وارد کنید.']);
         }
 
         if (!trim(post('post_type_id'))) {
@@ -218,7 +220,7 @@ class RequestService extends ComponentBase
         $packages = Session::get("packages");
         $packages[$id]["receiver_postal_code"] = post('receiver_postal_code');
         $packages[$id]['receiver_address'] = post('receiver_address');
-        $packages[$id]['weight'] = post('weight');
+        $packages[$id]['weight_id'] = post('weight_id');
         $packages[$id]['post_type_id'] = post('post_type_id');
         $packages[$id]['package_type_id'] = post('package_type_id');
         $packages[$id]['insurance_type_id'] = post('insurance_type_id');
@@ -231,7 +233,6 @@ class RequestService extends ComponentBase
 
         $this->page['service'] = new Service();
     }
-
 
 
 }

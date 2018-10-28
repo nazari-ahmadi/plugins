@@ -121,12 +121,24 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    {#<div class="col-md-6">
                         <div class="form-group">
                             <label for="weight" class="control-label">وزن مرسوله</label>
                             <input type="text" class="form-control"
                                    name="weight"
                                    id="weight">
+                        </div>
+                    </div>#}
+
+                    <div class="col-md-6">
+                        <div class="form-group" id="id_100">
+                            <label for="weight_id" class="control-label">وزن مرسوله</label>
+                            <select name="weight_id" id="weight_id" class="form-control">
+                                <option value=" ">انتخاب کنید</option>
+                                {% for item in weight %}
+                                    <option value="{{ item.id }}">{{ item.name }} </option>
+                                {% endfor %}
+                            </select>
                         </div>
                     </div>
 
@@ -201,13 +213,13 @@
                     <button type="submit" id="btn-save" class="btn btn-success btn-embossed save-event m-r-0"
                             data-request="onCreatePackage"
                             data-request-update="'{{ __SELF__ }}::_packages':'.showPackages'"
-                            data-request-success="dataRequestUpdate()"
+                            data-request-success="$('#package-modal').modal('hide');"
                             data-request-flash>ایجاد
                     </button>
                     <button type="submit" id="btn-edit" class="btn btn-default btn-embossed save-event m-r-0 hide"
                             data-request="onUpdatePackage"
                             data-request-update="'{{ __SELF__ }}::_packages':'.showPackages'"
-                            data-request-success="dataRequestUpdate()"
+                            data-request-success="$('#package-modal').modal('hide');"
                             data-request-flash>ذخیره
                     </button>
                     <button type="button" class="btn btn-default btn-embossed btnClose"
@@ -223,14 +235,7 @@
 <!-- END MODAL -->
 
 <script>
-    const dataRequestUpdate = function () {
-        $('#package-modal').modal('hide');
-
-    };
-
-
-    document.getElementById('status_id').selectedIndex ={{ lists.status_id }};
-
+    
     $(document).ready(function () {
         $("#btn-newPack").click(function () {
             $('#my-form')[0].reset();

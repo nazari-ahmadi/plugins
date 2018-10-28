@@ -21,7 +21,7 @@
                 <td>{{ item.receiver_address }}</td>
                 <td>{{ service.getPostType(item.post_type_id) }}</td>
                 <td>{{ service.getPackageType(item.package_type_id) }}</td>
-                <td>{{ item.weight }}</td>
+                <td>{{ service.getWeight(item.weight_id) }}</td>
                 <td>
                     <a
                             href="#"
@@ -59,10 +59,10 @@
             id = $(this).attr('data-id');
             $("input[name='package_id']").val(id);
 
-             packages={{ packages|json_encode|raw }};
+            packages ={{ packages|json_encode|raw }};
             $("input[name='receiver_postal_code']").val(packages[id].receiver_postal_code);
             $("input[name='receiver_address']").val(packages[id].receiver_address);
-            $("input[name='weight']").val(packages[id].weight);
+            $("input[name='weight_id']").val(packages[id].weight_id);
             $("select[name='post_type_id']").val(packages[id].post_type_id).change();
             $("select[name='package_type_id']").val(packages[id].package_type_id).change();
             $("select[name='insurance_type_id']").val(packages[id].insurance_type_id).change();

@@ -6,6 +6,7 @@ use Sepehr\Service\Components\ReferralPostman;
 use Sepehr\Service\Components\RequestService;
 use Sepehr\Service\Components\ServiceDelivery;
 use Sepehr\Service\Components\ServiceList;
+use Sepehr\Service\Components\Wallet;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -61,10 +62,11 @@ class Plugin extends PluginBase
     {
         return [
             RequestService::class => 'requestService',
-            ServiceList::class =>'serviceList',
-            ReferralPostman::class =>'referralPostman',
-            PostmanServices::class =>'PostmanServices',
-            ServiceDelivery::class =>'ServiceDelivery',
+            ServiceList::class => 'serviceList',
+            ReferralPostman::class => 'referralPostman',
+            PostmanServices::class => 'PostmanServices',
+            ServiceDelivery::class => 'ServiceDelivery',
+            Wallet::class => 'walletComponent'
         ];
     }
 

@@ -222,6 +222,17 @@
                                                     </li>
                                                     <?php endif;?>
 
+                                                    <!--weight-->
+                                                    <?php if($this->
+                                                    user->hasAccess('sepehr.details.service.access_weight')):
+                                                    ?>
+                                                    <li id="weight" class="item">
+                                                        <a href="<?=Backend::url('sepehr/details/weights')?>">
+                                                            <span class="title">انواع وزن </span>
+                                                            <span class="borders"></span>
+                                                        </a>
+                                                    </li>
+                                                    <?php endif;?>
                                                 </ul>
                                             </div>
                                         </div>

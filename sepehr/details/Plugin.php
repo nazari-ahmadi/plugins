@@ -76,7 +76,12 @@ class Plugin extends PluginBase
             "sepehr.details.service.access_acceptance" => [
                 "tab" => 'اطلاعات پایه سرویس پست',
                 "label" => 'مدیریت انواع پذیرش',
-                "order" => 6
+                "order" => 7
+            ],
+            "sepehr.details.service.access_weight" => [
+                "tab" => 'اطلاعات پایه سرویس پست',
+                "label" => 'مدیریت انواع وزن ',
+                "order" => 8
             ],
         ];
     }

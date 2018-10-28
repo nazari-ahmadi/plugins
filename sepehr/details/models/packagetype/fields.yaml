@@ -3,3 +3,8 @@ fields:
         label: عنوان
         span: auto
         type: text
+    coefficient:
+        label: ضریب
+        span: auto
+        default: '0'
+        type: number

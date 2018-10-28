@@ -6,5 +6,4 @@ fields:
     coefficient:
         label: ضریب
         span: auto
-        default: '0'
         type: number

@@ -1,0 +1,11 @@
+scopes:
+  status:
+    label: وضعیت
+    modelClass: Sepehr\Details\Models\Status
+    conditions: id in (:filtered)
+    nameFrom: name
+  created_at:
+    label: زمان
+    conditions: created_at >= :after AND created_at <= :before
+    type: date
+  

@@ -123,10 +123,13 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="weight" class="control-label">وزن مرسوله</label>
-                            <input type="text" class="form-control"
-                                   name="weight"
-                                   id="weight">
+                            <label for="weight_id" class="control-label">وزن مرسوله</label>
+                            <select name="weight_id" id="weight_id" class="form-control">
+                                <option value=" ">انتخاب کنید</option>
+                                {% for item in weight %}
+                                    <option value="{{ item.id }}">{{ item.name }} </option>
+                                {% endfor %}
+                            </select>
                         </div>
                     </div>
 

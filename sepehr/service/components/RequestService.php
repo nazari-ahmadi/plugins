@@ -22,6 +22,7 @@ use ValidationException;
 
 class RequestService extends ComponentBase
 {
+	
     public function componentDetails()
     {
         return [

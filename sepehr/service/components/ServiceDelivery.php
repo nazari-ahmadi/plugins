@@ -40,6 +40,8 @@ class ServiceDelivery extends ComponentBase
             }
         }
         $this->page['lists'] = $list;
+        Session::put('packages', $list->packages);
+        $this->page['price'] = $this->calculatePrice($list->packages);
         $this->page['packages'] = $list->packages;
         $this->page['service'] = new Service();
     }
@@ -47,6 +49,25 @@ class ServiceDelivery extends ComponentBase
     public function onRun()
     {
         $this->preVars();
+    }
+
+    public function calculatePrice($packages)
+    {
+        $price = 0;
+        foreach ($packages as $package) {
+            $price += $package['price'];
+        }
+        return $price;
+    }
+
+    public function onPackageReject()
+    {
+        $packages = (new RequestService)->onPackageDelete();
+        $this->page['price'] = $this->calculatePrice($packages);
+
+        $this->page['packages'] = $packages;
+        $this->page['service'] = new Service();
+
     }
 
 

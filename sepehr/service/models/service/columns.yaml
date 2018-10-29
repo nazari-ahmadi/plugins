@@ -3,15 +3,22 @@ columns:
         label: کد
         type: text
         width: 5%
-    user_id:
-        label: user_id
+    user:
+        label: مشتری
         type: text
-    manager_id:
-        label: manager_id
+        searchable: true
+        sortable: true
+        select: 'concat(first_name,'' '',last_name)'
+        relation: user
+    status:
+        label: 'وضعیت مرسوله'
         type: text
-    operator_id:
-        label: operator_id
+        searchable: true
+        sortable: true
+        select: name
+        relation: status
+    sender_address:
+        label: 'آدرس فرستنده'
         type: text
-    payment_type_id:
-        label: payment_type_id
-        type: text
+        searchable: true
+        sortable: true

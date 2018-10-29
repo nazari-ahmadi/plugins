@@ -233,4 +233,9 @@ class Service extends Model
         return Status::find($id)->name;
     }
 
+
+    public $belongsTo = [
+        'user' => 'RainLab\User\Models\User',
+        'status' => Status::class
+    ];
 }

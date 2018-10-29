@@ -29,7 +29,8 @@
                 <td>{{ cnt }}</td>
                 <td>{{ item.sender_postal_code }}</td>
                 <td>{{ item.sender_address }}</td>
-                <td>{{ service.getStatus(item.status_id) }}</td>
+                {#<td>{{ service.getStatus(item.status_id) }}</td>#}
+                <td>salam</td>
                 <td>{{ item.created_at }}</td>
                 <td>
                     <a href="{{ url('service-delivery') ~ '/' ~ item.id }}"

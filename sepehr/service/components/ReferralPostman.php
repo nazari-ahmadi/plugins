@@ -88,7 +88,6 @@ class ReferralPostman extends ComponentBase
 //                $man[$counter]['accepted_at'] = Carbon::now();
                 Session::put('postMans',$man);
             }
-
         }
 
         $service->postmans=Session::get('postMans');

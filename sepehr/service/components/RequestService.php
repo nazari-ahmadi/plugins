@@ -188,6 +188,7 @@ class RequestService extends ComponentBase
         Session::put('packages', $packages);
         $this->page['packages'] = $packages;
         $this->page['service'] = new Service();
+        return $packages;
     }
 
     public function onUpdatePackage()

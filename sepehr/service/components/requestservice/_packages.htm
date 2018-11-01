@@ -74,6 +74,16 @@
             $('#package-modal').find('#btn-save').addClass('hide');
 
         });
+
+        $("#btn-newPack").click(function () {
+            $('#my-form')[0].reset();
+            $('span.select2-selection__rendered').text('انتخاب کنید');
+
+            $('#package-modal').find('.modal-title').text('فرم ایجاد بسته جدید');
+            $('#package-modal').find('#btn-edit').addClass('hide');
+            $('#package-modal').find('#btn-save').removeClass('hide');
+
+        });
     });
 
 

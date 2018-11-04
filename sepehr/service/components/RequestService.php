@@ -117,7 +117,7 @@ class RequestService extends ComponentBase
 
 
         $packages[] = [
-            'is_rejected'               => false,
+            'is_rejected'               =>false,
             'package_number'            => post('package_number'),
             'receiver_postal_code'      => post('receiver_postal_code'),
             'receiver_address'          => post('receiver_address'),

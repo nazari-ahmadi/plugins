@@ -1,3 +1,7 @@
+{{ packages|json_encode|raw }}
+
+
+
 {{ form_ajax('onSaveService',{model:lists,class: 'form-horizontal', 'data-request-flash': true}) }}
 <div class="col-md-12">
     <div class="row">

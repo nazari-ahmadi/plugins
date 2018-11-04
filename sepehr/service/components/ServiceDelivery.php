@@ -55,28 +55,23 @@ class ServiceDelivery extends ComponentBase
     {
         $price = 0;
         foreach ($packages as $package) {
-            if (!$package->is_rejected) {
+            if ($package['is_rejected'] == false) {
                 $price += $package['price'];
             }
         }
         return $price;
     }
 
+
     public function onPackageReject()
     {
-
-//        $packages = (new RequestService)->onPackageDelete();
-//        $this->page['price'] = $this->calculatePrice($packages);
-//        $this->page['packages'] = $packages;
-
-
         $id = post('id');
-        $this->page['service'] = new Service();
         $packages = Session::get('packages');
-        $packages[$id]->is_rejected = true; 
-
-
+        $packages[$id]['is_rejected'] = true;
+        Session::put('packages', $packages);
+        $this->page['packages'] = $packages;
+        $this->page['price'] = $this->calculatePrice($packages);
+        $this->page['service'] = new Service();
     }
-
 
 }

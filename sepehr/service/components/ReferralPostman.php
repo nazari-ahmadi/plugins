@@ -32,16 +32,13 @@ class ReferralPostman extends ComponentBase
 
             foreach ($service->postmans as $postman) {
 
-                /*if ($postman['postman_id'] == $user->id) {
+                if ($postman['postman_id'] == $user->id) {
                     if ($postman['acceptance_id'] <= 1) {
                         $cnt++;
                         $list[$cnt]=$service;
                     }
-                }*/
-                if ($postman['postman_id'] == $user->id) {
-                    $cnt++;
-                    $list[$cnt] = $service;
                 }
+
             }
         }
         $this->page['lists'] = $list;

@@ -68,6 +68,15 @@ tabs:
                         label: 'کد پیگیری'
                         span: auto
                         type: text
+                    package_number:
+                        label: 'تعداد بسته'
+                        span: auto
+                        type: number
+                    is_rejected:
+                        label: 'قبول شده'
+                        span: auto
+                        default: 0
+                        type: switch
         postmans:
             label: پستچی
             prompt: 'Add new item'

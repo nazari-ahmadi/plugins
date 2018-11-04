@@ -15,8 +15,8 @@
         <tbody>
         {% set cnt = 1 %}
         {% for key,item in packages %}
-
-            <tr>
+            {% if item.is_rejected==false %}
+            <tr class="{{ item.is_rejected ? 'bg-danger':'' }}">
                 <td>{{ cnt }}</td>
                 <td>{{ item.receiver_postal_code }}</td>
                 <td>{{ item.receiver_address }}</td>
@@ -51,6 +51,7 @@
                     </a>
                 </td>
             </tr>
+            {% endif %}
             {% set cnt = cnt + 1 %}
         {% endfor %}
         </tbody>
@@ -59,7 +60,8 @@
 
 <div class="col-md-12">
     <label>کل مبلغ قابل پرداخت</label>
-    <label id="lblPrice" style="border-style: solid; width: 220px; height: 30px;text-align: center">{{ price }}  ریال</label>
+    <label id="lblPrice" style="border-style: solid; width: 220px; height: 30px;text-align: center">{{ price }}
+        ریال</label>
     <button style="width:150px;margin-top: 14px;" class="btn btn-rounded btn-embossed">اتصال به درگاه بانک</button>
 </div>
 
@@ -70,7 +72,7 @@
             id = $(this).attr('data-id');
             $("input[name='package_id']").val(id);
 
-             packages={{ packages|json_encode|raw }};
+            packages ={{ packages|json_encode|raw }};
             $("input[name='receiver_postal_code']").val(packages[id].receiver_postal_code);
             $("input[name='receiver_address']").val(packages[id].receiver_address);
             $("input[name='weight']").val(packages[id].weight);

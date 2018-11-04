@@ -10,7 +10,7 @@ class ServiceList extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'ServiceList Component',
+            'name' => 'ServiceList Component',
             'description' => 'No description provided yet...'
         ];
     }
@@ -22,9 +22,9 @@ class ServiceList extends ComponentBase
 
     public function preVars()
     {
-        $user=Auth::getUser();
-        $this->page['lists'] = Service::whereUserId($user->id)->orderBy('id')->get();
-        $this->page['service']= new Service();
+        $user = Auth::getUser();
+        $this->page['lists'] = Service::whereUserId($user->id)->orderBy('id', 'desc')->get();
+        $this->page['service'] = new Service();
     }
 
     public function onRun()
@@ -34,12 +34,12 @@ class ServiceList extends ComponentBase
 
     public function onServiceDelete()
     {
-        $user=Auth::getUser();
-        $id=post('id');
-        $service=Service::whereUserId($user->id)->find($id);
-        if ($service->status_id >1){
+        $user = Auth::getUser();
+        $id = post('id');
+        $service = Service::whereUserId($user->id)->find($id);
+        if ($service->status_id > 1) {
             throw new \ApplicationException('با توجه به تایید سرویس شما، امکان حذف وجود ندارد');
-        }else{
+        } else {
             $service->delete();
         }
         return Redirect::refresh();

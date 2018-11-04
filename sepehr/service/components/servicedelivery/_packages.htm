@@ -16,7 +16,7 @@
         {% set cnt = 1 %}
         {% for key,item in packages %}
             {% if item.is_rejected==false %}
-            <tr class="{{ item.is_rejected ? 'bg-danger':'' }}">
+            <tr>
                 <td>{{ cnt }}</td>
                 <td>{{ item.receiver_postal_code }}</td>
                 <td>{{ item.receiver_address }}</td>
@@ -62,8 +62,9 @@
     <label>کل مبلغ قابل پرداخت</label>
     <label id="lblPrice" style="border-style: solid; width: 220px; height: 30px;text-align: center">{{ price }}
         ریال</label>
-    <button style="width:150px;margin-top: 14px;" class="btn btn-rounded btn-embossed">اتصال به درگاه بانک</button>
+    <button style="width:150px;margin-top: 14px;" class="btn btn-rounded btn-embossed">پرداخت</button>
 </div>
+
 
 <script type="text/javascript">
 

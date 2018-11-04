@@ -26,17 +26,21 @@ class ReferralPostman extends ComponentBase
     {
         $user = Auth::getUser();
         $services = Service::whereStatusId(2)->orderBy('id')->get();
-        $list[]=null;
-        $cnt=-1;
+        $list[] = null;
+        $cnt = -1;
         foreach ($services as $service) {
 
             foreach ($service->postmans as $postman) {
 
-                if ($postman['postman_id'] == $user->id) {
+                /*if ($postman['postman_id'] == $user->id) {
                     if ($postman['acceptance_id'] <= 1) {
                         $cnt++;
                         $list[$cnt]=$service;
                     }
+                }*/
+                if ($postman['postman_id'] == $user->id) {
+                    $cnt++;
+                    $list[$cnt] = $service;
                 }
             }
         }
@@ -51,7 +55,7 @@ class ReferralPostman extends ComponentBase
 
     public function onAcceptService()
     {
-        $counter=-1;
+        $counter = -1;
         $user = Auth::getUser();
         $id = post('id');
         $service = Service::find($id);
@@ -60,14 +64,14 @@ class ReferralPostman extends ComponentBase
             $counter++;
             if ($postman['postman_id'] == $user->id) {
                 $man = Session::get("postMans");
-                $man[$counter]['acceptance_id']=2;
+                $man[$counter]['acceptance_id'] = 2;
 //                $man[$counter]['accepted_at'] = Carbon::now();
-                Session::put('postMans',$man);
+                Session::put('postMans', $man);
             }
 
         }
 
-        $service->postmans=Session::get('postMans');
+        $service->postmans = Session::get('postMans');
         $service->status_id = 3;
         $service->save();
         return \Redirect::refresh();
@@ -75,7 +79,7 @@ class ReferralPostman extends ComponentBase
 
     public function onRejectService()
     {
-        $counter=-1;
+        $counter = -1;
         $user = Auth::getUser();
         $id = post('id');
         $service = Service::find($id);
@@ -84,13 +88,13 @@ class ReferralPostman extends ComponentBase
             $counter++;
             if ($postman['postman_id'] == $user->id) {
                 $man = Session::get("postMans");
-                $man[$counter]['acceptance_id']=3;
+                $man[$counter]['acceptance_id'] = 3;
 //                $man[$counter]['accepted_at'] = Carbon::now();
-                Session::put('postMans',$man);
+                Session::put('postMans', $man);
             }
         }
 
-        $service->postmans=Session::get('postMans');
+        $service->postmans = Session::get('postMans');
         $service->save();
         return \Redirect::refresh();
     }

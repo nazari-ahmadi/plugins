@@ -1,3 +1,4 @@
+
 {{ form_ajax('onSaveService',{model:lists,class: 'form-horizontal', 'data-request-flash': true}) }}
 <div class="col-md-12">
     <div class="row">
@@ -17,7 +18,7 @@
                             <input type="text" class="form-control"
                                    name="sender_postal_code"
                                    id="sender_postal_code"
-                                   value="{{ form_value('sender_postal_code') }}"
+                                   value="{{ id ? form_value('sender_postal_code'): address.address  }}"
                             >
                         </div>
                     </div>
@@ -28,7 +29,7 @@
                             <input type="text" class="form-control"
                                    name="sender_address"
                                    id="sender_address"
-                                   value="{{ form_value('sender_address') }}"
+                                   value="{{ id ? form_value('sender_address'): address.postal_code  }}"
                             >
                         </div>
                     </div>

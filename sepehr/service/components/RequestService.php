@@ -22,7 +22,7 @@ use ValidationException;
 
 class RequestService extends ComponentBase
 {
-	
+
     public function componentDetails()
     {
         return [
@@ -48,6 +48,8 @@ class RequestService extends ComponentBase
 
     public function preVars()
     {
+
+        $this->page['id'] = $this->property('id');
         $user = Auth::getUser();
         Session::forget('packages');
         $id = $this->property('id');
@@ -59,19 +61,19 @@ class RequestService extends ComponentBase
         } else {
             $service = null;
         }
-
-        $this->page['users'] = FrontendUser::orderBy('id')->get();
-        $this->page['operators'] = BackendUser::orderBy('id')->get();
-        $this->page['paymentTypes'] = PaymentType::orderBy('name')->get();
-        $this->page['postTypes'] = PostType::orderbY('name')->get();
-        $this->page['insurancesTypes'] = InsuranceType::orderBy('name')->get();
-        $this->page['distributionTimes'] = DistributionTime::orderBy('name')->get();
-        $this->page['specialServices'] = SpecialService::orderBy('name')->get();
-        $this->page['packageTypes'] = PackageType::orderBy('name')->get();
-        $this->page['statuses'] = Status::orderBy('id')->get();
-        $this->page['weight'] = Weight::orderBy('id')->get();
-        $this->page['lists'] = $service;
-        $this->page['service'] = new Service();
+        $this->page['address']              = $user->addresses[0];
+        $this->page['users']                = FrontendUser::orderBy('id')->get();
+        $this->page['operators']            = BackendUser::orderBy('id')->get();
+        $this->page['paymentTypes']         = PaymentType::orderBy('name')->get();
+        $this->page['postTypes']            = PostType::orderbY('name')->get();
+        $this->page['insurancesTypes']      = InsuranceType::orderBy('name')->get();
+        $this->page['distributionTimes']    = DistributionTime::orderBy('name')->get();
+        $this->page['specialServices']      = SpecialService::orderBy('name')->get();
+        $this->page['packageTypes']         = PackageType::orderBy('name')->get();
+        $this->page['statuses']             = Status::orderBy('id')->get();
+        $this->page['weight']               = Weight::orderBy('id')->get();
+        $this->page['lists']                = $service;
+        $this->page['service']              = new Service();
     }
 
     public function onRun()
@@ -81,7 +83,9 @@ class RequestService extends ComponentBase
 
 
     public function onCreatePackage()
+
     {
+        
         if (!post('receiver_postal_code')) {
             throw new ValidationException(['receiver_postal_code' => 'لطفا کد پستی گیرنده کنید.']);
         }
@@ -165,11 +169,11 @@ class RequestService extends ComponentBase
         }
 
 
-        $service->sender_address = post('sender_address');
-        $service->sender_postal_code = post('sender_postal_code');
+        $service->sender_address        = post('sender_address');
+        $service->sender_postal_code    = post('sender_postal_code');
 
-        $service->user_id = $user->id;
-        $service->packages = Session::get('packages');
+        $service->user_id   = $user->id;
+        $service->packages  = Session::get('packages');
 //
         $service->save();
         Flash::success('سرویس با موفقیت ذخیره گردید');
@@ -220,14 +224,14 @@ class RequestService extends ComponentBase
 
         $id = post('package_id');
         $packages = Session::get("packages");
-        $packages[$id]["receiver_postal_code"] = post('receiver_postal_code');
-        $packages[$id]['receiver_address'] = post('receiver_address');
-        $packages[$id]['weight_id'] = post('weight_id');
-        $packages[$id]['post_type_id'] = post('post_type_id');
-        $packages[$id]['package_type_id'] = post('package_type_id');
-        $packages[$id]['insurance_type_id'] = post('insurance_type_id');
-        $packages[$id]['distribution_time_id'] = post('distribution_time_id');
-        $packages[$id]['special_services_id'] = post('special_services_id');
+        $packages[$id]["receiver_postal_code"]  = post('receiver_postal_code');
+        $packages[$id]['receiver_address']      = post('receiver_address');
+        $packages[$id]['weight_id']             = post('weight_id');
+        $packages[$id]['post_type_id']          = post('post_type_id');
+        $packages[$id]['package_type_id']       = post('package_type_id');
+        $packages[$id]['insurance_type_id']     = post('insurance_type_id');
+        $packages[$id]['distribution_time_id']  = post('distribution_time_id');
+        $packages[$id]['special_services_id']   = post('special_services_id');
 
         Session::put("packages", $packages);
 

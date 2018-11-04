@@ -14,7 +14,7 @@
         <tbody>
         {% set cnt = 1 %}
         {% for key,item in packages %}
-
+            {% if item.is_rejected ==false %}
             <tr>
                 <td>{{ cnt }}</td>
                 <td>{{ item.receiver_postal_code }}</td>
@@ -46,6 +46,7 @@
                     </a>
                 </td>
             </tr>
+            {% endif %}
             {% set cnt = cnt + 1 %}
         {% endfor %}
         </tbody>

@@ -1,4 +1,3 @@
-
 {{ form_ajax('onSaveService',{model:lists,class: 'form-horizontal', 'data-request-flash': true}) }}
 <div class="col-md-12">
     <div class="row">
@@ -18,7 +17,7 @@
                             <input type="text" class="form-control"
                                    name="sender_postal_code"
                                    id="sender_postal_code"
-                                   value="{{ id ? form_value('sender_postal_code'): address.address  }}"
+                                   value="{{ id ? form_value('sender_postal_code'): address.address }}"
                             >
                         </div>
                     </div>
@@ -29,7 +28,7 @@
                             <input type="text" class="form-control"
                                    name="sender_address"
                                    id="sender_address"
-                                   value="{{ id ? form_value('sender_address'): address.postal_code  }}"
+                                   value="{{ id ? form_value('sender_address'): address.postal_code }}"
                             >
                         </div>
                     </div>
@@ -105,6 +104,7 @@
                 <input type="hidden" name="package_id">
                 <div class="modal-body">
 
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="receiver_postal_code" class="control-label">کدپستی مقصد</label>
@@ -119,6 +119,18 @@
                             <input type="text" class="form-control"
                                    name="receiver_address"
                                    id="receiver_address">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="package_number" class="control-label"> تعداد بسته پستی </label>
+                            <input type="number" class="form-control"
+                                   name="package_number"
+                                   id="package_number"
+                                   min="1"
+                                   value="{{ id ? form_value('package_number'):1 }}"
+                            >
                         </div>
                     </div>
 

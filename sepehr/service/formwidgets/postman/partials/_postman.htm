@@ -1,0 +1,56 @@
+<?/*= $model */?><!--
+<br>
+<h3>value</h3>
+--><?/*= $value */?>
+
+
+
+
+
+<form>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="postman">پستچی</label>
+            <select name="postman" id="postman" class="form-control">
+                <?php foreach ($postmen as $key => $postman): ?>
+
+                    <option value="<?= $key ?>">
+                        <?= $postman ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" data-request="onReferral">انتخاب</button>
+        </div>
+    </div>
+
+</form>
+
+
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>کد</th>
+            <th>نام پستچی</th>
+
+            <th>وضعیت مرسوله </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+
+</script>

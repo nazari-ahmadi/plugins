@@ -193,15 +193,15 @@ class RequestService extends ComponentBase
         $id = post('package_id');
         $packages = Session::get("packages");
 
-        $packages[$id]["package_number"] = post('package_number');
+        $packages[$id]["package_number"]       = post('package_number');
         $packages[$id]["receiver_postal_code"] = post('receiver_postal_code');
-        $packages[$id]['receiver_address'] = post('receiver_address');
-        $packages[$id]['weight_id'] = post('weight_id');
-        $packages[$id]['post_type_id'] = post('post_type_id');
-        $packages[$id]['package_type_id'] = post('package_type_id');
-        $packages[$id]['insurance_type_id'] = post('insurance_type_id');
+        $packages[$id]['receiver_address']     = post('receiver_address');
+        $packages[$id]['weight_id']            = post('weight_id');
+        $packages[$id]['post_type_id']         = post('post_type_id');
+        $packages[$id]['package_type_id']      = post('package_type_id');
+        $packages[$id]['insurance_type_id']    = post('insurance_type_id');
         $packages[$id]['distribution_time_id'] = post('distribution_time_id');
-        $packages[$id]['special_services_id'] = post('special_services_id');
+        $packages[$id]['special_services_id']  = post('special_services_id');
 
         Session::put("packages", $packages);
 

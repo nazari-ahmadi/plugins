@@ -33,6 +33,12 @@
                 <td>{{ item.status_id!='' ? service.getStatus(item.status_id) : '' }}</td>
                 <td>{{ item.created_at }}</td>
                 <td>
+                    <a href="{{ url('serviceupdate') ~ '/' ~ item.id }}"
+                       class="btn btn-success btnEdit"
+                       {#data-request=""#}
+                       {#data-request-data="id:{{ item.id }}"#}
+                    > نمایش بسته
+                    </a>
                     <a
                             href="#"
                             class="btn btn-success btnEdit"

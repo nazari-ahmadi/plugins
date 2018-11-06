@@ -7,6 +7,7 @@ use Sepehr\Service\Components\RequestService;
 use Sepehr\Service\Components\ServiceDelivery;
 use Sepehr\Service\Components\ServiceList;
 use Sepehr\Service\Components\Wallet;
+use Sepehr\Service\FormWidgets\Packages;
 use Sepehr\Service\FormWidgets\Postman;
 use System\Classes\PluginBase;
 
@@ -73,13 +74,21 @@ class Plugin extends PluginBase
 
     public function registerSettings()
     {
+
     }
 
     public function registerFormWidgets()
     {
         return
             [
-         
+                Postman::class => [
+                    'label' => 'پستچی',
+                    'code' => 'postman'
+                ],
+                Packages::class => [
+                    'label' => 'بسته ها',
+                    'code' => 'servicePackages'
+                ]
             ];
     }
 

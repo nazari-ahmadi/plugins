@@ -103,3 +103,11 @@ tabs:
                         mode: datetime
                         span: auto
                         type: datepicker
+        postman:
+            type: postman
+            tab: tab3
+            span: full
+        servicePackages:
+            type: servicePackages
+            tab: tab4
+            span: full

@@ -5,6 +5,7 @@ use ApplicationException;
 use RainLab\User\Models\User as FrontUser;
 
 use Model;
+use RainLab\User\Models\UserGroup;
 use Sepehr\Details\Models\DistributionTime;
 use Sepehr\Details\Models\InsuranceType;
 use Sepehr\Details\Models\PackageType;
@@ -119,6 +120,9 @@ class Service extends Model
         }
     }
 
+
+
+
     public function getUserIdOptions()
     {
         $users = FrontUser::whereIsActivated(1)
@@ -198,7 +202,8 @@ class Service extends Model
 
     public function getPostmanIdOptions()
     {
-        $lists = FrontUser::lists('first_name', 'id');
+        $group = UserGroup::find(4);
+        $lists = $group->users->lists('first_name', 'id');
         $list = [' ' => 'انتخاب کنید'] + $lists;
         return $list;
     }
@@ -212,6 +217,7 @@ class Service extends Model
 
     public function getStatusIdOptions()
     {
+
         $lists = Status::lists('name', 'id');
         $list = [' ' => 'انتخاب کنید'] + $lists;
         return $list;

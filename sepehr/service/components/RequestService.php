@@ -61,7 +61,11 @@ class RequestService extends ComponentBase
         } else {
             $service = null;
         }
-        $this->page['address'] = $user->addresses[0];
+
+        if ($user->addresess->count()) {
+            $this->page['address'] = $user->addresses[0];
+        }
+
         $this->page['users'] = FrontendUser::orderBy('id')->get();
         $this->page['operators'] = BackendUser::orderBy('id')->get();
         $this->page['paymentTypes'] = PaymentType::orderBy('name')->get();
@@ -117,19 +121,19 @@ class RequestService extends ComponentBase
 
 
         $packages[] = [
-            'is_rejected'               =>false,
-            'package_number'            => post('package_number'),
-            'receiver_postal_code'      => post('receiver_postal_code'),
-            'receiver_address'          => post('receiver_address'),
-            'post_type_id'              => post('post_type_id'),
-            'distribution_time_id'      => post('distribution_time_id'),
-            'weight_id'                 => post('weight_id'),
-            'special_services_id'       => post('special_services_id'),
-            'price'                     => post('distribution_time_id'),
-            'package_type_id'           => post('package_type_id'),
-            'insurance_type_id'         => post('insurance_type_id'),
-            'transaction_code'          => post('transaction_code'),
-            'points'                    => post('points'),
+            'is_rejected' => false,
+            'package_number' => post('package_number'),
+            'receiver_postal_code' => post('receiver_postal_code'),
+            'receiver_address' => post('receiver_address'),
+            'post_type_id' => post('post_type_id'),
+            'distribution_time_id' => post('distribution_time_id'),
+            'weight_id' => post('weight_id'),
+            'special_services_id' => post('special_services_id'),
+            'price' => post('distribution_time_id'),
+            'package_type_id' => post('package_type_id'),
+            'insurance_type_id' => post('insurance_type_id'),
+            'transaction_code' => post('transaction_code'),
+            'points' => post('points'),
 
         ];
 

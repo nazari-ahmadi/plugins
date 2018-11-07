@@ -2,6 +2,7 @@
 
 use Backend\Classes\FormWidgetBase;
 use RainLab\User\Models\User;
+use Sepehr\Details\Models\Weight;
 use Sepehr\Service\Models\Service;
 use Session;
 
@@ -42,6 +43,7 @@ class Postman extends FormWidgetBase
         $this->vars['model'] = $this->model;
         $this->vars['postmen'] = $this->getPostman();
         $this->vars['service'] = new Service();
+
     }
 
 

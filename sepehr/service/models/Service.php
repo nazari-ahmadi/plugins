@@ -202,8 +202,13 @@ class Service extends Model
     public function getPostmanIdOptions()
     {
         $group = UserGroup::whereName('postmans')->get()->first();
-        $lists = $group->users->lists('first_name', 'id');
-        $list = ['0' => 'انتخاب کنید'] + $lists;
+//        $lists = $group->users->lists('first_name', 'id');
+        $lists = $group->users;
+        $list = ['0' => 'انتخاب کنید'];
+        foreach ($lists as $item){
+            $list[$item->id]= $item->first_name . ' ' . $item->last_name;
+        }
+
         return $list;
 
     }

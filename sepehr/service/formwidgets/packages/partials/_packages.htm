@@ -26,6 +26,7 @@
         <th>نوع ارسال پست</th>
         <th>نوع بسته پستی</th>
         <th>نوع بیمه پستی</th>
+        <th>عملیات</th>
     </tr>
     </thead>
 
@@ -46,6 +47,28 @@
             <td><?= $service->getPostType($package['post_type_id']) ?></td>
             <td><?= $service->getPackageType($package['package_type_id']) ?></td>
             <td><?= $service->getInsuranceType($package['insurance_type_id']) ?></td>
+            <td>
+                <a
+                        href="#"
+                        class="btn btn-default btnEdit"
+                        data-toggle="modal"
+                        data-target="#package-modal"
+                        data-id="{{ key }}"
+
+                >
+                    ویرایش
+                </a>
+
+                <a
+                        href="#"
+                        class="btn btn-default"
+                        data-request="onPackageDelete"
+                        data-request-data="id:{{ key }}"
+                        data-request-confirm="آیا از حذف رکورد مطمئن هستید؟"
+                >
+                    حذف
+                </a>
+            </td>
         </tr>
         <?php $count++ ?>
     <?php endforeach; ?>
@@ -188,18 +211,15 @@
                 <div class="modal-footer">
                     <button type="submit" id="btn-save" class="btn btn-success btn-embossed save-event m-r-0"
                             data-request="onCreatePackage"
-                            data-request-update="'{{ __SELF__ }}::_packages':'.showPackages'"
                             data-request-success="$('#package-modal').modal('hide');"
                             data-request-flash>ایجاد
                     </button>
                     <button type="submit" id="btn-edit" class="btn btn-default btn-embossed save-event m-r-0 hide"
                             data-request="onUpdatePackage"
-                            data-request-update="'{{ __SELF__ }}::_packages':'.showPackages'"
                             data-request-success="$('#package-modal').modal('hide');"
                             data-request-flash>ذخیره
                     </button>
                     <button type="button" class="btn btn-default btn-embossed btnClose"
-
                             data-dismiss="modal"
                     >بستن
                     </button>
@@ -209,3 +229,4 @@
     </div>
 </div>
 <!-- END MODAL -->
+

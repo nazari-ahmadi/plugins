@@ -8,6 +8,7 @@ use Sepehr\Details\Models\PostType;
 use Sepehr\Details\Models\SpecialService;
 use Sepehr\Details\Models\Weight;
 use Sepehr\Service\Models\Service;
+use ValidationException;
 
 /**
  * Packages Form Widget
@@ -41,7 +42,7 @@ class Packages extends FormWidgetBase
     public function prepareVars()
     {
         $this->vars['service'] = new Service();
-
+        $this->vars['packages']= $this->model->packages;
         $this->vars['name'] = $this->formField->getName();
         $this->vars['value'] = $this->getLoadValue();
         $this->vars['model'] = $this->model;
@@ -68,5 +69,27 @@ class Packages extends FormWidgetBase
     public function getSaveValue($value)
     {
         return $value;
+    }
+
+    public function onCreatePackage()
+    {
+        $packages=$this->model->packages;
+        $packages[]=[
+            'is_rejected' => false,
+            'package_number' => post('package_number'),
+            'receiver_postal_code' => post('receiver_postal_code'),
+            'receiver_address' => post('receiver_address'),
+            'post_type_id' => post('post_type_id'),
+            'distribution_time_id' => post('distribution_time_id'),
+            'weight_id' => post('weight_id'),
+            'special_services_id' => post('special_services_id'),
+            'price' => post('distribution_time_id'),
+            'package_type_id' => post('package_type_id'),
+            'insurance_type_id' => post('insurance_type_id'),
+            'transaction_code' => post('transaction_code'),
+            'points' => post('points'),
+        ];
+        $this->model->packages=$packages;
+        $this->model->save();
     }
 }

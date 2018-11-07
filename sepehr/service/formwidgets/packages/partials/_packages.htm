@@ -30,6 +30,13 @@
     </thead>
 
     <tbody>
+
+    <a href="#" data-toggle="modal" data-target="#package-modal"
+       id="btn-newPack"
+       data-request-success="dataRequestUpdate()"
+       class="btn btn-success btn-embossed btnCreatePackage center" style="width:150px;text-align: center"
+    >بسته جدید</a>
+
     <?php $count = 1 ?>
     <?php foreach ($model->packages as $key => $package): ?>
         <tr class="<?= $package['is_rejected'] == false ? 'bg-success' : 'bg-danger' ?>">
@@ -44,3 +51,161 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+
+
+<!-- BEGIN MODAL -->
+<div class="modal fade" id="package-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">فرم بسته جدید</h4>
+            </div>
+            <form id="my-form">
+                <input type="hidden" name="package_id">
+                <div class="modal-body">
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="receiver_postal_code" class="control-label">کدپستی مقصد</label>
+                            <input type="text" class="form-control"
+                                   name="receiver_postal_code"
+                                   id="receiver_postal_code">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="receiver_address" class="control-label">آدرس مقصد</label>
+                            <input type="text" class="form-control"
+                                   name="receiver_address"
+                                   id="receiver_address">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="package_number" class="control-label"> تعداد بسته پستی </label>
+                            <input type="number" class="form-control"
+                                   name="package_number"
+                                   id="package_number"
+                                   min="1"
+                                   value="{{ id ? item.package_number :1 }}"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="weight_id" class="control-label">وزن مرسوله</label>
+                            <select name="weight_id" id="weight_id" class="form-control">
+                                <option value="0">انتخاب کنید</option>
+                                <?php foreach ($weight as $item): ?>
+                                    <option value="<?= $item->id ?>">
+                                        <?= $item->name ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group" id="id_100">
+                            <label for="post_type_id" class="control-label">نوع ارسال</label>
+                            <select name="post_type_id" id="post_type_id" class="form-control">
+                                <option value="0">انتخاب کنید</option>
+                                <?php foreach ($postTypes as $item): ?>
+                                    <option value="<?= $item->id ?>">
+                                        <?= $item->name ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="package_type_id"> نوع بسته </label>
+                            <select name="package_type_id" id="package_type_id" class="form-control">
+                                <option value="0">انتخاب کنید</option>
+                                <?php foreach ($packageTypes as $item): ?>
+                                    <option value="<?= $item->id ?>">
+                                        <?= $item->name ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="insurance_type_id" class="control-label">نوع بیمه</label>
+                            <select name="insurance_type_id" id="insurance_type_id" class="form-control">
+                                <option value="0">انتخاب کنید</option>
+                                <?php foreach ($insuranceTypes as $item): ?>
+                                    <option value="<?= $item->id ?>">
+                                        <?= $item->name ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="distribution_time_id" class="control-label">بازه تحویل بسته پستی</label>
+                            <select name="distribution_time_id" id="distribution_time_id" class="form-control">
+                                <option value="0">انتخاب کنید</option>
+                                <?php foreach ($distributionTimes as $item): ?>
+                                    <option value="<?= $item->id ?>">
+                                        <?= $item->name ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="special_services_id" class="control-label">خدمات ویژه</label>
+                            <select name="special_services_id" id="special_services_id" class="form-control">
+                                <option value="0">انتخاب کنید</option>
+                                <?php foreach ($specialServices as $item): ?>
+                                    <option value="<?= $item->id ?>">
+                                        <?= $item->name ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer">
+                    <button type="submit" id="btn-save" class="btn btn-success btn-embossed save-event m-r-0"
+                            data-request="onCreatePackage"
+                            data-request-update="'{{ __SELF__ }}::_packages':'.showPackages'"
+                            data-request-success="$('#package-modal').modal('hide');"
+                            data-request-flash>ایجاد
+                    </button>
+                    <button type="submit" id="btn-edit" class="btn btn-default btn-embossed save-event m-r-0 hide"
+                            data-request="onUpdatePackage"
+                            data-request-update="'{{ __SELF__ }}::_packages':'.showPackages'"
+                            data-request-success="$('#package-modal').modal('hide');"
+                            data-request-flash>ذخیره
+                    </button>
+                    <button type="button" class="btn btn-default btn-embossed btnClose"
+
+                            data-dismiss="modal"
+                    >بستن
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODAL -->

@@ -30,7 +30,7 @@
     </thead>
 
     <tbody>
-    <?= $count = 1 ?>
+    <?php $count = 1 ?>
     <?php foreach ($model->packages as $key => $package): ?>
         <tr class="<?= $package['is_rejected'] == false ? 'bg-success' : 'bg-danger' ?>">
             <td width="5%"> <?= $count ?></td>

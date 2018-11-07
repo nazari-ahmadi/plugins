@@ -37,13 +37,14 @@ class Postman extends FormWidgetBase
      */
     public function prepareVars()
     {
-//        Session::forget('postmen');
         $this->vars['name'] = $this->formField->getName();
         $this->vars['value'] = $this->getLoadValue();
         $this->vars['model'] = $this->model;
         $this->vars['postmen'] = $this->getPostman();
-
+        $this->vars['service'] = new Service();
     }
+
+
 
     public function getPostman()
     {
@@ -55,18 +56,14 @@ class Postman extends FormWidgetBase
     public function onReferral()
     {
         $id = post('postman');
-        $postman = User::find($id);
+        $postmans=$this->model->postmans;
+        $postmans[]=['postman_id'=> $id,
+        'acceptance_id' => 1];
 
-        $postmen = Session::get('postmen');
-        $postmen['postman_id'] = $postman->id;
-        $postmen['acceptance_id'] = 2;
-        $postmen['accepted_at'] = null;
-        $postmen['receive_at'] = null;
+        $this->model->postmans= $postmans;
+        $this->model->save();
+        $this->vars['service'] = new Service();
 
-        Session::put('postmen', $postmen);
-
-
-        throw new \ApplicationException(print_r(Session::get('postmen')));
     }
 
     /**
@@ -81,11 +78,6 @@ class Postman extends FormWidgetBase
     /**
      * @inheritDoc
      */
-
-    public function onSearch()
-    {
-        $this->vars['ehsan'] = 'salam';
-    }
 
     public function getSaveValue($value)
     {

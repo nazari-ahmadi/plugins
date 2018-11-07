@@ -3,7 +3,6 @@
 use Backend\Models\User as BackendUser;
 use ApplicationException;
 use RainLab\User\Models\User as FrontUser;
-
 use Model;
 use RainLab\User\Models\UserGroup;
 use Sepehr\Details\Models\DistributionTime;
@@ -202,10 +201,11 @@ class Service extends Model
 
     public function getPostmanIdOptions()
     {
-        $group = UserGroup::find(4);
+        $group = UserGroup::whereName('postmans')->get()->first();
         $lists = $group->users->lists('first_name', 'id');
-        $list = [' ' => 'انتخاب کنید'] + $lists;
+        $list = ['0' => 'انتخاب کنید'] + $lists;
         return $list;
+
     }
 
     public function getWeightIdOptions()
@@ -239,6 +239,16 @@ class Service extends Model
         return Status::find($id)->name;
     }
 
+    public function getAcceptance($id)
+    {
+        return Acceptance::find($id)->name;
+    }
+
+    public function getUserPostMans($postmanId)
+    {
+        $user=FrontUser::whereId($postmanId)->get()->first();
+        return ($user->first_name . ' ' . $user->last_name);
+    }
 
     public $belongsTo = [
         'user' => 'RainLab\User\Models\User',

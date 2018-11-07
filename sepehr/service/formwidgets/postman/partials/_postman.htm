@@ -13,7 +13,6 @@
             <label for="postman">پستچی</label>
             <select name="postman" id="postman" class="form-control">
                 <?php foreach ($postmen as $key => $postman): ?>
-
                     <option value="<?= $key ?>">
                         <?= $postman ?>
                     </option>
@@ -21,36 +20,32 @@
             </select>
         </div>
         <div class="form-group">
-            <button class="btn btn-primary" data-request="onReferral">انتخاب</button>
+            <a class="btn btn-primary" data-request="onReferral">انتخاب</a>
         </div>
     </div>
 
+
+
 </form>
 
+<table class="table">
+    <thead>
+    <tr>
+        <th>ردیف</th>
+        <th>نام پستچی</th>
+        <th>وضعیت پذیرش </th>
+    </tr>
+    </thead>
 
-<div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>کد</th>
-            <th>نام پستچی</th>
-
-            <th>وضعیت مرسوله </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>
-
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-
-<script>
-
-</script>
+    <tbody>
+    <?php $count = 1 ?>
+    <?php foreach ($model->postmans as $key => $postman): ?>
+    <tr>
+        <td width="5%"> <?= $count ?></td>
+        <td><?= $service->getUserPostMans($postman['postman_id']) ?></td>
+        <td><?= $service->getAcceptance($postman['acceptance_id']) ?></td>
+    </tr>
+    <?php $count++ ?>
+    <?php endforeach; ?>
+    </tbody>
+</table>

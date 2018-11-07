@@ -1,12 +1,3 @@
-<?/*= $model */?><!--
-<br>
-<h3>value</h3>
---><?/*= $value */?>
-
-
-
-
-
 <form>
     <div class="col-md-6">
         <div class="form-group">
@@ -20,32 +11,21 @@
             </select>
         </div>
         <div class="form-group">
-            <a class="btn btn-primary" data-request="onReferral">انتخاب</a>
+            <button type="submit"
+                    class="btn btn-primary"
+                    data-request="onReferral"
+                    data-request-update="'list' : '.ehsan'"
+            >
+                انتخاب
+            </button>
         </div>
     </div>
 
 
-
 </form>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>ردیف</th>
-        <th>نام پستچی</th>
-        <th>وضعیت پذیرش </th>
-    </tr>
-    </thead>
 
-    <tbody>
-    <?php $count = 1 ?>
-    <?php foreach ($model->postmans as $key => $postman): ?>
-    <tr>
-        <td width="5%"> <?= $count ?></td>
-        <td><?= $service->getUserPostMans($postman['postman_id']) ?></td>
-        <td><?= $service->getAcceptance($postman['acceptance_id']) ?></td>
-    </tr>
-    <?php $count++ ?>
-    <?php endforeach; ?>
-    </tbody>
-</table>
+<div class="ehsan">
+    <?= $this->makePartial('list', ['model' => $model]) ?>
+
+</div>

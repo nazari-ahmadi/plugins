@@ -30,22 +30,23 @@
             <td><?= $service->getInsuranceType($package['insurance_type_id']) ?></td>
             <td>
                 <a
-                    href="#"
-                    class="btn btn-default btnEdit"
-                    data-toggle="modal"
-                    data-target="#package-modal"
-                    data-id="{{ key }}"
+                        href="#"
+                        class="btn btn-default btnEdit"
+                        data-toggle="modal"
+                        data-target="#package-modal"
+                        data-id="<?= $key ?>"
 
                 >
                     ویرایش
                 </a>
 
                 <a
-                    href="#"
-                    class="btn btn-default"
-                    data-request="onPackageDelete"
-                    data-request-data="id:{{ key }}"
-                    data-request-confirm="آیا از حذف رکورد مطمئن هستید؟"
+                        href="#"
+                        class="btn btn-default"
+                        data-request="onPackageDelete"
+                        data-request-data="id:<?= $key ?>"
+                        data-id="<?= $key ?>"
+                        data-request-confirm="آیا از حذف رکورد مطمئن هستید؟"
                 >
                     حذف
                 </a>
@@ -55,3 +56,41 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".btnEdit").click(function () {
+
+            let id = $(this).attr('data-id');
+            console.log('id',id);
+            $("input[name='package_id']").val(id);
+
+            // packages={{ packages|json_encode|raw }};
+            $("input[name='receiver_postal_code']").val(packages[id].receiver_postal_code);
+            $("input[name='receiver_address']").val(packages[id].receiver_address);
+            $("input[name='weight']").val(packages[id].weight);
+            $("select[name='post_type_id']").val(packages[id].post_type_id).change();
+            $("select[name='package_type_id']").val(packages[id].package_type_id).change();
+            $("select[name='insurance_type_id']").val(packages[id].insurance_type_id).change();
+            $("select[name='distribution_time_id']").val(packages[id].distribution_time_id).change();
+            $("select[name='special_services_id']").val(packages[id].special_services_id).change();
+
+            $('#package-modal').find('.modal-title').text('فرم ویرایش بسته');
+            $('#package-modal').find('#btn-edit').removeClass('hide');
+            $('#package-modal').find('#btn-save').addClass('hide');
+
+        });
+
+        $("#btn-newPack").click(function () {
+            $('#my-form')[0].reset();
+            $('span.select2-selection__rendered').text('انتخاب کنید');
+
+            $('#package-modal').find('.modal-title').text('فرم ایجاد بسته جدید');
+            $('#package-modal').find('#btn-edit').addClass('hide');
+            $('#package-modal').find('#btn-save').removeClass('hide');
+
+        });
+    });
+
+
+</script>

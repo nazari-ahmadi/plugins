@@ -42,16 +42,16 @@ class Packages extends FormWidgetBase
     public function prepareVars()
     {
         $this->vars['service'] = new Service();
-        $this->vars['packages']= $this->model->packages;
+        $this->vars['packages'] = $this->model->packages;
         $this->vars['name'] = $this->formField->getName();
         $this->vars['value'] = $this->getLoadValue();
         $this->vars['model'] = $this->model;
-        $this->vars['weight']=Weight::orderBy('id')->get();
-        $this->vars['postTypes']=PostType::orderBy('id')->get();
-        $this->vars['packageTypes']=PackageType::orderBy('id')->get();
-        $this->vars['insuranceTypes']=InsuranceType::orderBy('id')->get();
-        $this->vars['distributionTimes']=DistributionTime::orderBy('id')->get();
-        $this->vars['specialServices']=SpecialService::orderBy('id')->get();
+        $this->vars['weight'] = Weight::orderBy('id')->get();
+        $this->vars['postTypes'] = PostType::orderBy('id')->get();
+        $this->vars['packageTypes'] = PackageType::orderBy('id')->get();
+        $this->vars['insuranceTypes'] = InsuranceType::orderBy('id')->get();
+        $this->vars['distributionTimes'] = DistributionTime::orderBy('id')->get();
+        $this->vars['specialServices'] = SpecialService::orderBy('id')->get();
     }
 
     /**
@@ -73,8 +73,8 @@ class Packages extends FormWidgetBase
 
     public function onCreatePackage()
     {
-        $packages=$this->model->packages;
-        $packages[]=[
+        $packages = $this->model->packages;
+        $packages[] = [
             'is_rejected' => false,
             'package_number' => post('package_number'),
             'receiver_postal_code' => post('receiver_postal_code'),
@@ -89,11 +89,18 @@ class Packages extends FormWidgetBase
             'transaction_code' => post('transaction_code'),
             'points' => post('points'),
         ];
-        $this->model->packages=$packages;
+        $this->model->packages = $packages;
 //        $this->model->save();
-        $this->vars['service']=new Service();
-        $this->vars['model']=$this->model;
+        $this->vars['service'] = new Service();
+        $this->vars['model'] = $this->model;
 
     }
-    
+
+    public function onUpdatePackage()
+    {
+        $id = post('id');
+        throw new \ApplicationException($id);
+
+    }
+
 }

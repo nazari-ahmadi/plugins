@@ -62,7 +62,7 @@ class RequestService extends ComponentBase
             $service = null;
         }
 
-        if ($user->addresess->count()) {
+        if ($user->addresess[0]) {
             $this->page['address'] = $user->addresses[0];
         }
 
@@ -116,26 +116,36 @@ class RequestService extends ComponentBase
             throw new ValidationException(['insurance_type_id' => 'لطفا نوع بیمه را انتخاب کنید.']);
         }
 
-
         $packages = Session::get("packages");
 
+        if ($id = post('package_id')){
+            $packages[$id]["package_number"]       = post('package_number');
+            $packages[$id]["receiver_postal_code"] = post('receiver_postal_code');
+            $packages[$id]['receiver_address']     = post('receiver_address');
+            $packages[$id]['weight_id']            = post('weight_id');
+            $packages[$id]['post_type_id']         = post('post_type_id');
+            $packages[$id]['package_type_id']      = post('package_type_id');
+            $packages[$id]['insurance_type_id']    = post('insurance_type_id');
+            $packages[$id]['distribution_time_id'] = post('distribution_time_id');
+            $packages[$id]['special_services_id']  = post('special_services_id');
+        }else{
+            $packages[] = [
+                'is_rejected' => false,
+                'package_number' => post('package_number'),
+                'receiver_postal_code' => post('receiver_postal_code'),
+                'receiver_address' => post('receiver_address'),
+                'post_type_id' => post('post_type_id'),
+                'distribution_time_id' => post('distribution_time_id'),
+                'weight_id' => post('weight_id'),
+                'special_services_id' => post('special_services_id'),
+                'price' => post('distribution_time_id'),
+                'package_type_id' => post('package_type_id'),
+                'insurance_type_id' => post('insurance_type_id'),
+                'transaction_code' => post('transaction_code'),
+                'points' => post('points'),
 
-        $packages[] = [
-            'is_rejected' => false,
-            'package_number' => post('package_number'),
-            'receiver_postal_code' => post('receiver_postal_code'),
-            'receiver_address' => post('receiver_address'),
-            'post_type_id' => post('post_type_id'),
-            'distribution_time_id' => post('distribution_time_id'),
-            'weight_id' => post('weight_id'),
-            'special_services_id' => post('special_services_id'),
-            'price' => post('distribution_time_id'),
-            'package_type_id' => post('package_type_id'),
-            'insurance_type_id' => post('insurance_type_id'),
-            'transaction_code' => post('transaction_code'),
-            'points' => post('points'),
-
-        ];
+            ];
+        }
 
 //        throw new \ApplicationException(print_r($packages));
         Session::put("packages", $packages);
@@ -164,54 +174,54 @@ class RequestService extends ComponentBase
         $this->page['service'] = new Service();
     }
 
-    public function onUpdatePackage()
-    {
-        if (!post('package_number')) {
-            throw new ValidationException(['package_number' => 'لطفاتعداد بسته را وارد کنید.']);
-        }
-        if (!post('receiver_postal_code')) {
-            throw new ValidationException(['receiver_postal_code' => 'لطفا کد پستی گیرنده کنید.']);
-        }
-
-        if (!post('receiver_address')) {
-            throw new ValidationException(['receiver_address' => 'لطفا آدرس گیرنده را وارد کنید.']);
-        }
-
-        if (!$weight = post('weight_id')) {
-            throw new ValidationException(['weight_id' => 'لطفا وزن مرسوله  را وارد کنید.']);
-        }
-
-        if (!trim(post('post_type_id'))) {
-            throw new ValidationException(['post_type_id' => 'لطفا نوع ارسال را انتخاب کنید.']);
-        }
-
-        if (!trim(post('package_type_id'))) {
-            throw new ValidationException(['package_type_id' => 'لطفا نوع بسته را انتخاب کنید.']);
-        }
-
-        if (!trim(post('insurance_type_id'))) {
-            throw new ValidationException(['insurance_type_id' => 'لطفا نوع بیمه را انتخاب کنید.']);
-        }
-
-        $id = post('package_id');
-        $packages = Session::get("packages");
-
-        $packages[$id]["package_number"]       = post('package_number');
-        $packages[$id]["receiver_postal_code"] = post('receiver_postal_code');
-        $packages[$id]['receiver_address']     = post('receiver_address');
-        $packages[$id]['weight_id']            = post('weight_id');
-        $packages[$id]['post_type_id']         = post('post_type_id');
-        $packages[$id]['package_type_id']      = post('package_type_id');
-        $packages[$id]['insurance_type_id']    = post('insurance_type_id');
-        $packages[$id]['distribution_time_id'] = post('distribution_time_id');
-        $packages[$id]['special_services_id']  = post('special_services_id');
-
-        Session::put("packages", $packages);
-
-        $this->page['packages'] = Session::get('packages');
-
-        $this->page['service'] = new Service();
-    }
+//    public function onUpdatePackage()
+//    {
+//        if (!post('package_number')) {
+//            throw new ValidationException(['package_number' => 'لطفاتعداد بسته را وارد کنید.']);
+//        }
+//        if (!post('receiver_postal_code')) {
+//            throw new ValidationException(['receiver_postal_code' => 'لطفا کد پستی گیرنده کنید.']);
+//        }
+//
+//        if (!post('receiver_address')) {
+//            throw new ValidationException(['receiver_address' => 'لطفا آدرس گیرنده را وارد کنید.']);
+//        }
+//
+//        if (!$weight = post('weight_id')) {
+//            throw new ValidationException(['weight_id' => 'لطفا وزن مرسوله  را وارد کنید.']);
+//        }
+//
+//        if (!trim(post('post_type_id'))) {
+//            throw new ValidationException(['post_type_id' => 'لطفا نوع ارسال را انتخاب کنید.']);
+//        }
+//
+//        if (!trim(post('package_type_id'))) {
+//            throw new ValidationException(['package_type_id' => 'لطفا نوع بسته را انتخاب کنید.']);
+//        }
+//
+//        if (!trim(post('insurance_type_id'))) {
+//            throw new ValidationException(['insurance_type_id' => 'لطفا نوع بیمه را انتخاب کنید.']);
+//        }
+//
+//        $id = post('package_id');
+//        $packages = Session::get("packages");
+//
+//        $packages[$id]["package_number"]       = post('package_number');
+//        $packages[$id]["receiver_postal_code"] = post('receiver_postal_code');
+//        $packages[$id]['receiver_address']     = post('receiver_address');
+//        $packages[$id]['weight_id']            = post('weight_id');
+//        $packages[$id]['post_type_id']         = post('post_type_id');
+//        $packages[$id]['package_type_id']      = post('package_type_id');
+//        $packages[$id]['insurance_type_id']    = post('insurance_type_id');
+//        $packages[$id]['distribution_time_id'] = post('distribution_time_id');
+//        $packages[$id]['special_services_id']  = post('special_services_id');
+//
+//        Session::put("packages", $packages);
+//
+//        $this->page['packages'] = Session::get('packages');
+//
+//        $this->page['service'] = new Service();
+//    }
 
     public function onSaveService()
     {

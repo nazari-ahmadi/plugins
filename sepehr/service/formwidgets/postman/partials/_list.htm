@@ -1,21 +1,23 @@
-<table class="table">
-    <thead>
-    <tr>
-        <th>ردیف</th>
-        <th>نام پستچی</th>
-        <th>وضعیت پذیرش</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <?php $count = 1 ?>
-    <?php foreach ($model->postmans as $key => $postman): ?>
+<?php if($model):?>
+    <table class="table">
+        <thead>
         <tr>
-            <td width="5%"> <?= $count ?></td>
-            <td><?= $service->getUserPostMans($postman['postman_id']) ?></td>
-            <td><?= $service->getAcceptance($postman['acceptance_id']) ?></td>
+            <th>ردیف</th>
+            <th>نام پستچی</th>
+            <th>وضعیت پذیرش</th>
         </tr>
-        <?php $count++ ?>
-    <?php endforeach; ?>
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+        <?php $count = 1 ?>
+        <?php foreach ($model->postmans as $key => $postman): ?>
+            <tr>
+                <td width="5%"> <?= $count ?></td>
+                <td><?= $service->getUserPostMans($postman['postman_id']) ?></td>
+                <td><?= $service->getAcceptance($postman['acceptance_id']) ?></td>
+            </tr>
+            <?php $count++ ?>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>

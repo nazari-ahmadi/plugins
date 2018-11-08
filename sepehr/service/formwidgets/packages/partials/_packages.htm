@@ -23,7 +23,7 @@
                             <input type="text" class="form-control"
                                    name="receiver_postal_code"
                                    id="receiver_postal_code"
-                                   value="<?= $package==null ?'asdfasfas' :$package["receiver_postal_code"] ?>"
+                                   value=""
                             >
 
                         </div>
@@ -44,7 +44,7 @@
                                    name="package_number"
                                    id="package_number"
                                    min="1"
-                                   value="{{ id ? item.package_number :1 }}"
+                                   value="1"
                             >
                         </div>
                     </div>
@@ -147,8 +147,9 @@
                             data-request-flash>ایجاد
                     </button>
                     <button type="submit" id="btn-edit" class="btn btn-default btn-embossed save-event m-r-0 hide"
-                            data-request="onUpdatePackage"
+                            data-request="onCreatePackage"
                             data-request-success="$('#package-modal').modal('hide');"
+                            data-request-update="'list':'.packages'"
                             data-request-flash>ذخیره
                     </button>
                     <button type="button" class="btn btn-default btn-embossed btnClose"

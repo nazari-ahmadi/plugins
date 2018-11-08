@@ -43,10 +43,8 @@ class Packages extends FormWidgetBase
      */
     public function prepareVars()
     {
-        $this->vars['id'] = null;
         $this->vars['service'] = new Service();
         $this->vars['packages'] = $this->model->packages;
-        $this->vars['package'] = '';
         $this->vars['name'] = $this->formField->getName();
         $this->vars['value'] = $this->getLoadValue();
         $this->vars['model'] = $this->model;
@@ -77,35 +75,43 @@ class Packages extends FormWidgetBase
 
     public function onCreatePackage()
     {
+        $id = post('package_id');
         $packages = $this->model->packages;
-        $packages[] = [
-            'is_rejected' => false,
-            'package_number' => post('package_number'),
-            'receiver_postal_code' => post('receiver_postal_code'),
-            'receiver_address' => post('receiver_address'),
-            'post_type_id' => post('post_type_id'),
-            'distribution_time_id' => post('distribution_time_id'),
-            'weight_id' => post('weight_id'),
-            'special_services_id' => post('special_services_id'),
-            'price' => post('distribution_time_id'),
-            'package_type_id' => post('package_type_id'),
-            'insurance_type_id' => post('insurance_type_id'),
-            'transaction_code' => post('transaction_code'),
-            'points' => post('points'),
-        ];
+        if ($id!=null){
+            $packages[$id]["package_number"]       = post('package_number');
+            $packages[$id]["receiver_postal_code"] = post('receiver_postal_code');
+            $packages[$id]['receiver_address']     = post('receiver_address');
+            $packages[$id]['weight_id']            = post('weight_id');
+            $packages[$id]['post_type_id']         = post('post_type_id');
+            $packages[$id]['package_type_id']      = post('package_type_id');
+            $packages[$id]['insurance_type_id']    = post('insurance_type_id');
+            $packages[$id]['distribution_time_id'] = post('distribution_time_id');
+            $packages[$id]['special_services_id']  = post('special_services_id');
+        }else{
+            $packages[] = [
+                'is_rejected' => false,
+                'package_number' => post('package_number'),
+                'receiver_postal_code' => post('receiver_postal_code'),
+                'receiver_address' => post('receiver_address'),
+                'post_type_id' => post('post_type_id'),
+                'distribution_time_id' => post('distribution_time_id'),
+                'weight_id' => post('weight_id'),
+                'special_services_id' => post('special_services_id'),
+                'price' => post('distribution_time_id'),
+                'package_type_id' => post('package_type_id'),
+                'insurance_type_id' => post('insurance_type_id'),
+                'transaction_code' => post('transaction_code'),
+                'points' => post('points'),
+
+            ];
+        }
         $this->model->packages = $packages;
-//        $this->model->save();
+        $this->model->save();
         $this->vars['service'] = new Service();
         $this->vars['model'] = $this->model;
 
     }
 
-    public function onUpdatePackage()
-    {
-        $id = post('id');
-        throw new \ApplicationException($id);
-
-    }
 
     public function onDeletePackage()
     {
@@ -116,16 +122,10 @@ class Packages extends FormWidgetBase
 
         }
         $this->model->packages = $packages;
+        $this->model->save();
         $this->vars['service'] = new Service();
         $this->vars['model']=$this->model;
     }
 
-    public function onGetId()
-    {
-        $id = post('id');
-        $this->vars['id'] = $id;
-
-
-    }
 
 }

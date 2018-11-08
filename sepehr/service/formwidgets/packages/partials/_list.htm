@@ -34,11 +34,7 @@
                         class="btn btn-default btnEdit"
                         data-toggle="modal"
                         data-target="#package-modal"
-                        data-request="onGetId"
-                        data-request-data=id:"<?= $key ?>"
-                        data-request-update="'list':'.packages'"
                         data-id="<?= $key ?>"
-
 
                 >
                     ویرایش
@@ -65,16 +61,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $(".btnEdit").click(function () {
-
-            //packages = "<?//= json_encode($packages)?>//";
-            let id = $(this).attr('data-id');
-            console.log('id', id);
+            id = $(this).attr('data-id');
+            packages = <?= json_encode($model->packages)?>;
             $("input[name='package_id']").val(id);
-
-
-            console.log(packages);
-            // $("input[name='receiver_postal_code']").val(packages[id].receiver_postal_code);
-            $("input[name='receiver_postal_code']").val('salammmmmmmmmmmmmmmmmmmmmmm');
+            $("input[name='receiver_postal_code']").val(packages[id].receiver_postal_code);
             $("input[name='receiver_address']").val(packages[id].receiver_address);
             $("input[name='weight']").val(packages[id].weight);
             $("select[name='post_type_id']").val(packages[id].post_type_id).change();
@@ -82,6 +72,7 @@
             $("select[name='insurance_type_id']").val(packages[id].insurance_type_id).change();
             $("select[name='distribution_time_id']").val(packages[id].distribution_time_id).change();
             $("select[name='special_services_id']").val(packages[id].special_services_id).change();
+            $("select[name='package_number']").val(packages[id].package_number);
 
             $('#package-modal').find('.modal-title').text('فرم ویرایش بسته');
             $('#package-modal').find('#btn-edit').removeClass('hide');
@@ -92,7 +83,7 @@
         $("#btn-newPack").click(function () {
             $('#my-form')[0].reset();
             $('span.select2-selection__rendered').text('انتخاب کنید');
-
+            $("input[name='package_id']").val("");
             $('#package-modal').find('.modal-title').text('فرم ایجاد بسته جدید');
             $('#package-modal').find('#btn-edit').addClass('hide');
             $('#package-modal').find('#btn-save').removeClass('hide');

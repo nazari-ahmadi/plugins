@@ -90,6 +90,10 @@ class Packages extends FormWidgetBase
             'points' => post('points'),
         ];
         $this->model->packages=$packages;
-        $this->model->save();
+//        $this->model->save();
+        $this->vars['service']=new Service();
+        $this->vars['model']=$this->model;
+
     }
+    
 }

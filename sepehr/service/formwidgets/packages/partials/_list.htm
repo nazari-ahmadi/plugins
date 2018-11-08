@@ -1,0 +1,57 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>ردیف</th>
+        <th>کد پستی گیرنده</th>
+        <th>آدرس گیرنده</th>
+        <th>نوع ارسال پست</th>
+        <th>نوع بسته پستی</th>
+        <th>نوع بیمه پستی</th>
+        <th>عملیات</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <a href="#" data-toggle="modal" data-target="#package-modal"
+       id="btn-newPack"
+       data-request-success="dataRequestUpdate()"
+       class="btn btn-success btn-embossed btnCreatePackage center" style="width:150px;text-align: center"
+    >بسته جدید</a>
+
+    <?php $count = 1 ?>
+    <?php foreach ($model->packages as $key => $package): ?>
+        <tr class="<?= $package['is_rejected'] == false ? 'bg-success' : 'bg-danger' ?>">
+            <td width="5%"> <?= $count ?></td>
+            <td><?= $package['receiver_postal_code'] ?></td>
+            <td><?= $package['receiver_address'] ?></td>
+            <td><?= $service->getPostType($package['post_type_id']) ?></td>
+            <td><?= $service->getPackageType($package['package_type_id']) ?></td>
+            <td><?= $service->getInsuranceType($package['insurance_type_id']) ?></td>
+            <td>
+                <a
+                    href="#"
+                    class="btn btn-default btnEdit"
+                    data-toggle="modal"
+                    data-target="#package-modal"
+                    data-id="{{ key }}"
+
+                >
+                    ویرایش
+                </a>
+
+                <a
+                    href="#"
+                    class="btn btn-default"
+                    data-request="onPackageDelete"
+                    data-request-data="id:{{ key }}"
+                    data-request-confirm="آیا از حذف رکورد مطمئن هستید؟"
+                >
+                    حذف
+                </a>
+            </td>
+        </tr>
+        <?php $count++ ?>
+    <?php endforeach; ?>
+    </tbody>
+</table>

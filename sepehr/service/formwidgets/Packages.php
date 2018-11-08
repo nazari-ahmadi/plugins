@@ -95,5 +95,17 @@ class Packages extends FormWidgetBase
         $this->vars['model']=$this->model;
 
     }
-    
+
+    public function onDeletePackage()
+    {
+//        throw new \ApplicationException(1654566);
+        $packages = $this->model->packages;
+        if ($id = post('id') !== null) {
+            unset($packages[$id]);
+        }
+        $this->model->packages=$packages;
+        $this->vars['service']=new Service();
+        $this->vars['model']=$this->model;
+    }
+
 }

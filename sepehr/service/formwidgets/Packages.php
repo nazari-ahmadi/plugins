@@ -10,6 +10,7 @@ use Sepehr\Details\Models\Weight;
 use Sepehr\Service\Models\Service;
 use ValidationException;
 
+
 /**
  * Packages Form Widget
  */
@@ -32,6 +33,7 @@ class Packages extends FormWidgetBase
      */
     public function render()
     {
+
         $this->prepareVars();
         return $this->makePartial('packages');
     }
@@ -41,8 +43,10 @@ class Packages extends FormWidgetBase
      */
     public function prepareVars()
     {
+        $this->vars['id'] = null;
         $this->vars['service'] = new Service();
         $this->vars['packages'] = $this->model->packages;
+        $this->vars['package'] = '';
         $this->vars['name'] = $this->formField->getName();
         $this->vars['value'] = $this->getLoadValue();
         $this->vars['model'] = $this->model;
@@ -100,6 +104,27 @@ class Packages extends FormWidgetBase
     {
         $id = post('id');
         throw new \ApplicationException($id);
+
+    }
+
+    public function onDeletePackage()
+    {
+        $id = post('id');
+        $packages = $this->model->packages;
+        if ($id != null) {
+            unset($packages[$id]);
+
+        }
+        $this->model->packages = $packages;
+        $this->vars['service'] = new Service();
+        $this->vars['model']=$this->model;
+    }
+
+    public function onGetId()
+    {
+        $id = post('id');
+        $this->vars['id'] = $id;
+
 
     }
 

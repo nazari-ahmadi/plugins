@@ -64,6 +64,7 @@
             $("input[name='package_id']").val(id);
 
              packages={{ packages|json_encode|raw }};
+             console.log(packages);
             $("input[name='receiver_postal_code']").val(packages[id].receiver_postal_code);
             $("input[name='receiver_address']").val(packages[id].receiver_address);
             $("input[name='weight']").val(packages[id].weight);

@@ -34,7 +34,11 @@
                         class="btn btn-default btnEdit"
                         data-toggle="modal"
                         data-target="#package-modal"
+                        data-request="onGetId"
+                        data-request-data=id:"<?= $key ?>"
+                        data-request-update="'list':'.packages'"
                         data-id="<?= $key ?>"
+
 
                 >
                     ویرایش
@@ -43,10 +47,11 @@
                 <a
                         href="#"
                         class="btn btn-default"
-                        data-request="onPackageDelete"
+                        data-request="onDeletePackage"
                         data-request-data="id:<?= $key ?>"
                         data-id="<?= $key ?>"
                         data-request-confirm="آیا از حذف رکورد مطمئن هستید؟"
+                        data-request-update="'list':'.packages'"
                 >
                     حذف
                 </a>
@@ -61,12 +66,15 @@
     $(document).ready(function () {
         $(".btnEdit").click(function () {
 
+            //packages = "<?//= json_encode($packages)?>//";
             let id = $(this).attr('data-id');
-            console.log('id',id);
+            console.log('id', id);
             $("input[name='package_id']").val(id);
 
-            // packages={{ packages|json_encode|raw }};
-            $("input[name='receiver_postal_code']").val(packages[id].receiver_postal_code);
+
+            console.log(packages);
+            // $("input[name='receiver_postal_code']").val(packages[id].receiver_postal_code);
+            $("input[name='receiver_postal_code']").val('salammmmmmmmmmmmmmmmmmmmmmm');
             $("input[name='receiver_address']").val(packages[id].receiver_address);
             $("input[name='weight']").val(packages[id].weight);
             $("select[name='post_type_id']").val(packages[id].post_type_id).change();
@@ -91,6 +99,5 @@
 
         });
     });
-
 
 </script>

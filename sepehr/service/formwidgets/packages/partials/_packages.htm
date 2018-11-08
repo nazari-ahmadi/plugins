@@ -3,7 +3,6 @@
     <?= $this->makePartial('list') ?>
 </div>
 
-
 <!-- BEGIN MODAL -->
 <div class="modal fade" id="package-modal">
     <div class="modal-dialog">
@@ -12,8 +11,9 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">فرم بسته جدید</h4>
             </div>
+
             <form id="my-form">
-                <input type="hidden" name="package_id">
+                <input type="hidden" name="package_id" id="package_id" value="">
                 <div class="modal-body">
 
 
@@ -22,7 +22,10 @@
                             <label for="receiver_postal_code" class="control-label">کدپستی مقصد</label>
                             <input type="text" class="form-control"
                                    name="receiver_postal_code"
-                                   id="receiver_postal_code">
+                                   id="receiver_postal_code"
+                                   value="<?= $package==null ?'asdfasfas' :$package["receiver_postal_code"] ?>"
+                            >
+
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -158,4 +161,5 @@
     </div>
 </div>
 <!-- END MODAL -->
+
 

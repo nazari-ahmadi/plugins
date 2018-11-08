@@ -55,19 +55,26 @@ class Postman extends FormWidgetBase
 
     public function onReferral()
     {
-        $id = post('postman');
-        $postmans=$this->model->postmans;
-        $postmans[]=['postman_id'=> $id,
-        'acceptance_id' => 1];
-
-        $this->model->postmans= $postmans;
-        $this->model->save();
-        $this->vars['service'] = new Service();
-
-        $this->vars['model']=$this->model;
-
+        if ($this->checkAcceptance($this->model->postmans)){
+            throw new \ApplicationException("این سرویس توسط مامور دیگری پذیرش شده لذا امکان ارجاع وجود ندارد");
+        }else{
+            $id = post('postman');
+            $postmans=$this->model->postmans;
+            $postmans[]=['postman_id'=> $id,'acceptance_id' => 1];
+            $this->model->postmans= $postmans;
+            $this->model->save();
+            $this->vars['service'] = new Service();
+            $this->vars['model']=$this->model;
+        }
     }
-
+    private function checkAcceptance($postmans){
+        foreach ($postmans as $package){
+            if ($package['acceptance_id']==2){
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * @inheritDoc
      */

@@ -1,0 +1,24 @@
+<table class="table table-hover dataTable" id="tblPayment">
+    <thead>
+    <tr>
+        <th>ردیف</th>
+        <th>نوع پرداخت</th>
+        <th>مبلغ پرداختی</th>
+        <th>تاریخ پرداخت</th>
+    </tr>
+    </thead>
+    {% if payments %}
+    <tbody>
+    {% set cnt2 = 1 %}
+    {% for key,item in payments %}
+    <tr>
+        <td>{{ cnt2 }}</td>
+        <td>{{ service.getPaymentType(item.payment_type_id) }}</td>
+        <td>{{ item.amount }} ریال</td>
+        <td>{{ item.payment_date }}</td>
+    </tr>
+    {% set cnt2 = cnt2 + 1 %}
+    {% endfor %}
+    </tbody>
+    {% endif %}
+</table>

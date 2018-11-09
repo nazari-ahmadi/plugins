@@ -1,6 +1,7 @@
 <?php namespace Sepehr\Service\Components;
 
 use Cms\Classes\ComponentBase;
+use Redirect;
 use Sepehr\Details\Models\DistributionTime;
 use Sepehr\Details\Models\InsuranceType;
 use Sepehr\Details\Models\PackageType;
@@ -60,6 +61,7 @@ class ServiceDelivery extends ComponentBase
         $this->page['packageTypes'] = PackageType::orderBy('name')->get();
         $this->page['statuses'] = Status::orderBy('id')->get();
         $this->page['weight'] = Weight::orderBy('id')->get();
+        $this->page['payments']=$list->payments;
     }
 
     public function onRun()
@@ -71,7 +73,6 @@ class ServiceDelivery extends ComponentBase
     {
         $price = 0;
         foreach ($packages as $package) {
-//            throw new \ApplicationException($package['price']);
             if ($package['is_rejected'] == false && $package['price']!=null) {
                 $price += $package['price'];
             }
@@ -79,7 +80,17 @@ class ServiceDelivery extends ComponentBase
         return $price;
     }
 
-
+    public function onCashPayment()
+    {
+        $id = $this->property('id');
+        $service=Service::find($id);
+        $payments=$service->payments;
+        $payments[]=['payment_type_id'=>2, 'amount' => post('cashPayment'),'payment_date' => ''];
+        $service->payments=$payments;
+        $service->save();
+        $this->page['service']=new Service();
+        $this->page['payments']=$service->payments;
+    }
     public function onPackageReject()
     {
         $id = post('id');
@@ -89,6 +100,15 @@ class ServiceDelivery extends ComponentBase
         $this->page['packages'] = $packages;
         $this->page['price'] = $this->calculatePrice($packages);
         $this->page['service'] = new Service();
+    }
+
+    public function onDeliveredService()
+    {
+        $id = $this->property('id');
+        $service=Service::find($id);
+        $service->status_id=4;
+        $service->save();
+        return Redirect::to('/postman-services');
     }
 
 }

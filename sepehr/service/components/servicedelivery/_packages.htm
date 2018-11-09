@@ -57,12 +57,28 @@
     </table>
 {% endif %}
 
-<div class="col-md-12">
+<div class="row">
+    <div class="col-md-12">
     <label>کل مبلغ قابل پرداخت</label>
-    <label id="lblPrice" style="border-style: solid; width: 220px; height: 30px;text-align: center">{{ price }}
-        ریال</label>
-    <button style="width:150px;margin-top: 14px;" class="btn btn-rounded btn-embossed">پرداخت</button>
+    <input disabled id="lblPrice" style="border-style: solid; width: 220px; height: 30px;text-align: center" value="{{ price }} ریال">
+    </div>
+    ------------------------------------------------------------------------------------------------------------------
+    <div class="col-m-12">
+        <label for="cashPayment">مبلغ پرداخت نقدی</label>
+        <input type="text" value="0" name="cashPayment" id="cashPayment" style="text-align: center">
+        <a href="#"
+           name="btnCashPayment"
+           data-request="onCashPayment"
+           class="btn btn-success"
+           data-request-update="'{{ __SELF__ }}::_paymentList':'.showList'"
+           style="margin-top: 10px">تایید پرداخت</a>
+    </div>
+    <div class="col-m-12 showList" style="margin-top: 15px">
+        {% partial __SELF__ ~ '::_paymentList' %}
+    </div>
+
 </div>
+
 
 
 <script type="text/javascript">

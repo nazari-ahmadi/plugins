@@ -97,7 +97,7 @@ class Packages extends FormWidgetBase
                 'distribution_time_id' => post('distribution_time_id'),
                 'weight_id' => post('weight_id'),
                 'special_services_id' => post('special_services_id'),
-                'price' => post('distribution_time_id'),
+                'price' => 0,
                 'package_type_id' => post('package_type_id'),
                 'insurance_type_id' => post('insurance_type_id'),
                 'transaction_code' => post('transaction_code'),

@@ -94,15 +94,15 @@
 {{ form_close() }}
 
 <!-- BEGIN MODAL -->
-<div class="modal fade" id="package-modal">
+<div class="modal fade" id="packages-modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">فرم بسته جدید</h4>
             </div>
-            <form id="my-form">
-                <input type="hidden" name="package_id">
+            <form id="my-form3">
+                <input type="hidden" name="packages_id" value="">
                 <div class="modal-body">
 
                     <div class="col-md-6">
@@ -121,13 +121,27 @@
                                    id="receiver_address">
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="package_number" class="control-label"> تعداد بسته پستی </label>
+                            <input type="number" class="form-control"
+                                   name="package_number"
+                                   id="package_number"
+                                   min="1"
+                                   value="{{ id ? item.package_number :1 }}"
+                            >
+                        </div>
+                    </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="weight" class="control-label">وزن مرسوله</label>
-                            <input type="text" class="form-control"
-                                   name="weight"
-                                   id="weight">
+                            <label for="weight_id" class="control-label">وزن مرسوله</label>
+                            <select name="weight_id" id="weight_id" class="form-control">
+                                <option value=" ">انتخاب کنید</option>
+                                {% for item in weight %}
+                                <option value="{{ item.id }}">{{ item.name }} </option>
+                                {% endfor %}
+                            </select>
                         </div>
                     </div>
 
@@ -202,15 +216,11 @@
                     <button type="submit" id="btn-save" class="btn btn-success btn-embossed save-event m-r-0"
                             data-request="onCreatePackage"
                             data-request-update="'{{ __SELF__ }}::_packages':'.showPackages'"
-                            data-request-success="dataRequestUpdate()"
-                            data-request-flash>ایجاد
-                    </button>
-                    <button type="submit" id="btn-edit" class="btn btn-default btn-embossed save-event m-r-0 hide"
-                            data-request="onUpdatePackage"
-                            data-request-update="'{{ __SELF__ }}::_packages':'.showPackages'"
+                            {#data-request-success="'{{ __SELF__ }}::_SumPrice':'.showPrice'"#}
                             data-request-success="dataRequestUpdate()"
                             data-request-flash>ذخیره
                     </button>
+
                     <button type="button" class="btn btn-default btn-embossed btnClose"
 
                             data-dismiss="modal"
@@ -225,7 +235,7 @@
 
 <script>
     const dataRequestUpdate = function () {
-        $('#package-modal').modal('hide');
+        $('#packages-modal').modal('hide');
 
     };
 
@@ -236,9 +246,7 @@
         $("#btn-newPack").click(function () {
             $('#my-form')[0].reset();
             $('span.select2-selection__rendered').text('انتخاب کنید');
-            $('#package-modal').find('.modal-title').text('فرم ایجاد بسته جدید');
-            $('#package-modal').find('#btn-edit').addClass('hide');
-            $('#package-modal').find('#btn-save').removeClass('hide');
+            $('#packages-modal').find('.modal-title').text('فرم ایجاد بسته جدید');
 
         });
     });

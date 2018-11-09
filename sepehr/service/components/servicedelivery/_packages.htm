@@ -27,11 +27,10 @@
                 <td>
                     <a
                             href="#"
-                            class="btn btn-default btnEdit"
+                            class="btn btn-default btnEdit2"
                             data-toggle="modal"
-                            data-target="#package-modal"
+                            data-target="#packages-modal"
                             data-id="{{ key }}"
-
                     >
                         {#<i class="fa fa-edit"></i>#}
                         اصلاح اطلاعات
@@ -69,24 +68,23 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $(".btnEdit").click(function () {
+        $(".btnEdit2").click(function () {
 
             id = $(this).attr('data-id');
-            $("input[name='package_id']").val(id);
+            $("input[name='packages_id']").val(id);
 
             packages ={{ packages|json_encode|raw }};
             $("input[name='receiver_postal_code']").val(packages[id].receiver_postal_code);
             $("input[name='receiver_address']").val(packages[id].receiver_address);
-            $("input[name='weight']").val(packages[id].weight);
+            $("select[name='weight_id']").val(packages[id].weight_id).change();
             $("select[name='post_type_id']").val(packages[id].post_type_id).change();
             $("select[name='package_type_id']").val(packages[id].package_type_id).change();
             $("select[name='insurance_type_id']").val(packages[id].insurance_type_id).change();
             $("select[name='distribution_time_id']").val(packages[id].distribution_time_id).change();
             $("select[name='special_services_id']").val(packages[id].special_services_id).change();
+            $("input[name='package_number']").val(packages[id].package_number);
+            $('#packages-modal').find('.modal-title').text('فرم ویرایش بسته');
 
-            $('#package-modal').find('.modal-title').text('فرم ویرایش بسته');
-            $('#package-modal').find('#btn-edit').removeClass('hide');
-            $('#package-modal').find('#btn-save').addClass('hide');
 
         });
     });

@@ -1,3 +1,4 @@
+<?php if($model):?>
 <table class="table">
     <thead>
     <tr>
@@ -18,7 +19,7 @@
        data-request-success="dataRequestUpdate()"
        class="btn btn-success btn-embossed btnCreatePackage center" style="width:150px;text-align: center"
     >بسته جدید</a>
-
+    <?php if ($model->packages): ?>
     <?php $count = 1 ?>
     <?php foreach ($model->packages as $key => $package): ?>
         <tr class="<?= $package['is_rejected'] == false ? 'bg-success' : 'bg-danger' ?>">
@@ -55,9 +56,10 @@
         </tr>
         <?php $count++ ?>
     <?php endforeach; ?>
+    <?php endif; ?>
     </tbody>
 </table>
-
+<?php endif; ?>
 <script type="text/javascript">
     $(document).ready(function () {
         $(".btnEdit").click(function () {
@@ -75,8 +77,6 @@
             $("select[name='package_number']").val(packages[id].package_number);
 
             $('#package-modal').find('.modal-title').text('فرم ویرایش بسته');
-            $('#package-modal').find('#btn-edit').removeClass('hide');
-            $('#package-modal').find('#btn-save').addClass('hide');
 
         });
 
@@ -85,8 +85,6 @@
             $('span.select2-selection__rendered').text('انتخاب کنید');
             $("input[name='package_id']").val("");
             $('#package-modal').find('.modal-title').text('فرم ایجاد بسته جدید');
-            $('#package-modal').find('#btn-edit').addClass('hide');
-            $('#package-modal').find('#btn-save').removeClass('hide');
 
         });
     });

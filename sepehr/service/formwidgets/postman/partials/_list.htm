@@ -9,6 +9,7 @@
         </thead>
 
         <tbody>
+        <?php if ($model->postmans): ?>
         <?php $count = 1 ?>
         <?php foreach ($model->postmans as $key => $postman): ?>
             <tr>
@@ -18,6 +19,7 @@
             </tr>
             <?php $count++ ?>
         <?php endforeach; ?>
+        <?php endif; ?>
         </tbody>
     </table>
 <?php endif; ?>

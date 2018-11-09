@@ -1,0 +1,66 @@
+
+<div class="payment">
+    <?= $this->makePartial('list') ?>
+</div>
+
+<!-- BEGIN MODAL -->
+<div class="modal fade" id="payment-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">فرم ثبت پرداخت</h4>
+            </div>
+
+            <form id="my-form1">
+                <input type="hidden" name="payment_id" id="payment_id" value="">
+                <div class="modal-body">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="payment_type_id" class="control-label">نوع پرداخت</label>
+                            <select name="payment_type_id" id="payment_type_id" class="form-control">
+                                <option value="0">انتخاب کنید</option>
+                                <?php foreach ($paymentTypes as $item): ?>
+                                    <option value="<?= $item->id ?>">
+                                        <?= $item->name ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="amount" class="control-label">مبلغ پرداختی</label>
+                            <input type="text" class="form-control"
+                                   name="amount"
+                                   id="amount"
+                                   value=""
+                            >
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer">
+                    <button type="submit" id="btn-save" class="btn btn-success btn-embossed save-event m-r-0"
+                            data-request="onPayment"
+                            data-request-success="$('#payment-modal').modal('hide');"
+                            data-request-update="'list':'.payment'"
+                            data-request-flash>ثبت
+                    </button>
+
+                    <button type="button" class="btn btn-default btn-embossed btnClose"
+                            data-dismiss="modal"
+                    >بستن
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODAL -->
+
+

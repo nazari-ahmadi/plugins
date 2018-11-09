@@ -103,11 +103,36 @@ tabs:
                         mode: datetime
                         span: auto
                         type: datepicker
-        postman:
-            type: postman
-            tab: tab3
+        payments:
+            label: 'پرداخت هزینه سرویس'
+            prompt: 'Add new item'
             span: full
+            type: repeater
+            tab: پرداخت
+            form:
+                fields:
+                    payment_type_id:
+                        label: 'نوع پرداخت'
+                        span: auto
+                        type: dropdown
+                    amount:
+                        label: 'مبلغ پرداختی'
+                        span: auto
+                        type: number
+                    payment_date:
+                        label: 'تاریخ پرداخت'
+                        span: auto
+                        mode: datetime
+                        type: datepicker
         servicePackages:
             type: servicePackages
-            tab: tab4
+            tab: 'بسته های پستی'
+            span: full
+        postman:
+            type: postman
+            tab: 'ارجاع به پستچی'
+            span: full
+        payment:
+            type: payment
+            tab: 'لیست پرداخت'
             span: full

@@ -1,0 +1,81 @@
+<?php if($model):?>
+<table class="table">
+    <thead>
+    <tr>
+        <th>ردیف</th>
+        <th>نوع پرداخت</th>
+        <th>مبلغ</th>
+        <th>تاریخ پرداخت</th>
+        <th>عملیات</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <a href="#" data-toggle="modal" data-target="#payment-modal"
+       id="btn-newPay"
+       data-request-success="dataRequestUpdate()"
+       class="btn btn-success btn-embossed btnCreatePackage center" style="width:150px;text-align: center"
+    >افزودن</a>
+    <?php if ($model->payments): ?>
+    <?php $count = 1 ?>
+    <?php foreach ($model->payments as $key => $payment): ?>
+        <tr>
+            <td width="5%"> <?= $count ?></td>
+            <td><?= $service->getPaymentType($payment['payment_type_id']) ?></td>
+            <td><?= $payment['amount'] ?></td>
+            <td><?= $payment['payment_date'] ?></td>
+            <td>
+                <a
+                    href="#"
+                    class="btn btn-default btnUpdate"
+                    data-toggle="modal"
+                    data-target="#payment-modal"
+                    data-id="<?= $key ?>"
+
+                >
+                    ویرایش
+                </a>
+
+                <a
+                    href="#"
+                    class="btn btn-default"
+                    data-request="onDeletePayment"
+                    data-request-data="id:<?= $key ?>"
+                    data-id="<?= $key ?>"
+                    data-request-confirm="آیا از حذف رکورد مطمئن هستید؟"
+                    data-request-update="'list':'.payment'"
+                >
+                    حذف
+                </a>
+            </td>
+        </tr>
+        <?php $count++ ?>
+    <?php endforeach; ?>
+    <?php endif; ?>
+    </tbody>
+</table>
+<?php endif; ?>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".btnUpdate").click(function () {
+            id = $(this).attr('data-id');
+            payments = <?= json_encode($model->payments)?>;
+            $("input[name='payment_id']").val(id);
+            $("input[name='amount']").val(payments[id].amount);
+            $("select[name='payment_type_id']").val(payments[id].payment_type_id).change();
+
+            $('#payment-modal').find('.modal-title').text('فرم ویرایش پرداخت');
+
+        });
+
+        $("#btn-newPay").click(function () {
+            $('#my-form1')[0].reset();
+            $('span.select2-selection__rendered').text('انتخاب کنید');
+            $("input[name='payment_id']").val("");
+            $('#payment-modal').find('.modal-title').text('فرم ثبت پرداخت');
+
+        });
+    });
+
+</script>

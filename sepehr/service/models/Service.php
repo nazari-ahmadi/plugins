@@ -21,7 +21,7 @@ class Service extends Model
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\SoftDelete;
     protected $dates = ['deleted_at'];
-    protected $jsonable = ['packages', 'postmans'];
+    protected $jsonable = ['packages', 'postmans','payments'];
     /**
      * @var array Validation rules
      */
@@ -69,6 +69,10 @@ class Service extends Model
     public function getInsuranceType($id)
     {
         return InsuranceType::find($id)->name;
+    }
+    public function getPaymentType($id)
+    {
+        return PaymentType::find($id)->name;
     }
     public function getSpecialService($id)
     {
@@ -202,6 +206,8 @@ class Service extends Model
         $user=FrontUser::whereId($postmanId)->get()->first();
         return ($user->first_name . ' ' . $user->last_name);
     }
+
+
     public $belongsTo = [
         'user' => 'RainLab\User\Models\User',
         'status' => Status::class

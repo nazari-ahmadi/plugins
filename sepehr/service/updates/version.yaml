@@ -18,3 +18,6 @@
 1.0.7:
     - 'Updated table sepehr_service_index'
     - builder_table_update_sepehr_service_index_5.php
+1.0.8:
+    - 'Updated table sepehr_service_index'
+    - builder_table_update_sepehr_service_index_6.php

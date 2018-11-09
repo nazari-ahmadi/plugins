@@ -94,4 +94,10 @@ class Payments extends FormWidgetBase
         $this->vars['service'] = new Service();
         $this->vars['model']=$this->model;
     }
+
+    public function CheckStatus()
+    {
+        //چک شود اگر پرداخت ها برابر بر قیمت کل سرویس شد وضعیت پرداخت تنظیم شود
+    }
+
 }

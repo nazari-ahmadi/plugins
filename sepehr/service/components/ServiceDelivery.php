@@ -87,9 +87,13 @@ class ServiceDelivery extends ComponentBase
         $payments=$service->payments;
         $payments[]=['payment_type_id'=>2, 'amount' => post('cashPayment'),'payment_date' => ''];
         $service->payments=$payments;
+
+        //در صورتی که کامل پرداخت شده وضعیت پرداخت تنظیم شود
+
         $service->save();
         $this->page['service']=new Service();
         $this->page['payments']=$service->payments;
+
     }
     public function onPackageReject()
     {

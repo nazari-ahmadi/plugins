@@ -1,24 +1,14 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <form
-                data-request="onWalletCharge"
-                data-request-confirm="آیا از میزان شارژ مطمئن هستید"
-            >
-                <div class="form-group">
-                    <label for="wallet_charge">
-                        مقدار شارژ
-                    </label>
-                    <input type="number" min="0" step="5000" id="wallet_charge" name="wallet_charge"
-                           class="form-control">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success">ذخیره مقدار جدید</button>
-                </div>
-            </form>
-
-            <span>            میزان شارژ کیف پول شما :</span>
-            <span class="badge badge-primary">{{ wallet }}</span>
-        </div>
+<div class="row">
+    <div class="col-md-12">
+        <label class="col-md-2" style="text-align: left" for="wallet_charge"> مبلغ شارژ (ریال)</label>
+        <input type="number" min="10000" step="10000" id="wallet_charge" name="wallet_charge" class="col-md-6">
+        <a style="margin: -5px 5px 0 0" href="#"
+           data-request="onWalletCharge"
+           class="btn btn-success col-md-1"
+           data-request-update="'{{ __SELF__ }}::_list':'.payList'"
+        >پرداخت</a>
+    </div>
+    <div class="col-md-12 payList">
+        {% partial __SELF__ ~ '::_list' %}
     </div>
 </div>

@@ -1,0 +1,68 @@
+<p>
+    <br>
+</p>
+<span>     موجودی کیف پول شما :</span>
+<span class="badge badge-primary">{{ wallet }}</span>
+<p>
+    <br>
+<hr>
+    <br>
+</p>
+
+{% if lists %}
+<div class="col-md-12">
+    <h4 class="col-md-9">
+        لیست درخواست های در انتظار پرداخت
+    </h4>
+
+</div>
+<p>
+    <br>
+    <br>
+    <br>
+</p>
+<table class="table table-hover dataTable" id="table2">
+    <thead>
+    <tr>
+        <th>ردیف</th>
+        <th>کد پستی مبدا</th>
+        <th>آدرس مبدا</th>
+        <th>وضعیت تراکنش</th>
+        <th>تاریخ درخواست</th>
+        <th>مبلغ پرداخت شده</th>
+        <th>مبلغ باقی مانده</th>
+        <th>عملیات</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set cnt = 1 %}
+    {% for key,item in lists %}
+
+    <tr>
+        <td>{{ cnt }}</td>
+        <td>{{ item.sender_postal_code }}</td>
+        <td>{{ item.sender_address }}</td>
+        <td>{{ service.getStatus(item.status_id) }}</td>
+        <td>{{ item.created_at }}</td>
+
+        <td></td>
+        <td></td>
+        <td>
+            <a
+                    href="{{ url('serviceupdate') ~ '/' ~ item.id }}"
+                    class="btn btn-default btnEdit"
+                    {#data-request="onServiceUpdate"#}
+                    {#data-request-data="id:{{ item.id }}"#}
+            >
+                پرداخت
+            </a>
+
+        </td>
+    </tr>
+    {% set cnt = cnt + 1 %}
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+

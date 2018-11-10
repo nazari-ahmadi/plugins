@@ -207,31 +207,6 @@ class Service extends Model
         return ($user->first_name . ' ' . $user->last_name);
     }
 
-    public function getPay($id)
-    {
-        $pay=0;
-        $payments=Service::find($id);
-        if ($payments!=null){
-            foreach ($payments as $payment){
-                $pay += $payment["amount"];
-            }
-        }
-        return $pay;
-    }
-
-    public function getNotPay($id)
-    {
-        $total=0;
-        $packages=Service::find($id);
-        if ($packages!=null){
-            foreach ($packages as $package){
-                $total += $package["price"];
-            }
-        }
-        $notPay = $total - $this->getPay($id);
-        return $notPay;
-    }
-
     public $belongsTo = [
         'user' => 'RainLab\User\Models\User',
         'status' => Status::class

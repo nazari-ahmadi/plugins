@@ -1,5 +1,7 @@
 <?php namespace Sepehr\Service\Components;
 
+use Flash;
+
 use Cms\Classes\ComponentBase;
 use Redirect;
 use Sepehr\Details\Models\DistributionTime;
@@ -112,7 +114,13 @@ class ServiceDelivery extends ComponentBase
         $service=Service::find($id);
         $service->status_id=4;
         $service->save();
+        $wallet=new Wallet();
+        if($wallet->PayService($service)){
+            Flash::success('پرداخت با موفقیت انجام شد');
+        }
         return Redirect::to('/postman-services');
     }
+
+
 
 }

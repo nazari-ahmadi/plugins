@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-md-12">
         <label class="col-md-2" style="text-align: left" for="wallet_charge"> مبلغ شارژ (ریال)</label>
-        <input type="number" min="10000" step="10000" id="wallet_charge" name="wallet_charge" class="col-md-6">
+        <input type="number" min="1000" step="1000" id="wallet_charge" name="wallet_charge" class="col-md-6">
         <a style="margin: -5px 5px 0 0" href="#"
            data-request="onWalletCharge"
            class="btn btn-success col-md-1"
            data-request-update="'{{ __SELF__ }}::_list':'.payList'"
-        >پرداخت</a>
+        >شارژ کیف پول</a>
     </div>
     <div class="col-md-12 payList">
         {% partial __SELF__ ~ '::_list' %}

@@ -44,15 +44,15 @@
         <td>{{ item.sender_address }}</td>
         <td>{{ service.getStatus(item.status_id) }}</td>
         <td>{{ item.created_at }}</td>
+        <td>{{ Wallet.getPay(item) }}</td>
+        <td>{{ Wallet.getNotPay(item) }}</td>
 
-        <td></td>
-        <td></td>
         <td>
             <a
-                    href="{{ url('serviceupdate') ~ '/' ~ item.id }}"
-                    class="btn btn-default btnEdit"
-                    {#data-request="onServiceUpdate"#}
-                    {#data-request-data="id:{{ item.id }}"#}
+                href="#"
+                class="btn btn-default btnPay"
+                data-request="onServicePayment"
+                data-id="id:{{ item.id }}"
             >
                 پرداخت
             </a>

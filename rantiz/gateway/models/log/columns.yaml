@@ -1,0 +1,26 @@
+columns:
+    id:
+        label: 'rantiz.gateway::lang.form.field.log_id'
+        type: number
+        searchable: true
+    transaction_id:
+        label: 'rantiz.gateway::lang.form.field.id'
+        type: number
+        searchable: true
+    user:
+        label: 'rantiz.gateway::lang.form.field.user'
+        type: text
+        searchable: true
+        select: concat(last_name,' ، ',first_name,' - ',username)
+        relation: user
+    result_code:
+        label: 'rantiz.gateway::lang.form.field.result_code'
+        type: text
+        searchable: true
+    result_message:
+        label: 'rantiz.gateway::lang.form.field.result_message'
+        type: text
+        searchable: true
+    log_date:
+        label: 'rantiz.gateway::lang.form.field.log_date'
+        type: datetime

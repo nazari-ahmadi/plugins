@@ -1,0 +1,16 @@
+{% if trackingCode %}
+	<div style="margin:30px;margin-bottom: 435px;">
+		<div style="color:green;text-align:center;">{{ message }}</div>
+		<div style="text-align:center;margin-top:20px">
+			شماره تراکنش: {{ transactionID }}
+			<br><br>
+			شمراه پیگیری پرداخت: {{ trackingCode }}
+			<br><br>
+			مبلغ: {{ amount|number_format() }} {{ port == 'ZARINPAL' ? 'تومان': 'ریال' }}
+			{% if pageLink %}
+			<br><br>
+			<a href="{{pageLink}}">برای دانلود فایل ها کلیک کنید</a>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

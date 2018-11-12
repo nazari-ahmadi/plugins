@@ -1,0 +1,54 @@
+<div class="col-lg-12 portlets">
+  <div class="panel">
+    <div class="panel-header">
+      <h3><i class="fa fa-list-altt"></i> <strong>{{"Transactions List"|_}}</strong></h3>
+      <div class="control-btn">
+        <a href="#" class="panel-toggle"><i class="fa fa-angle-down"></i></a>
+      </div>
+    </div>
+    <div class="panel-content pagination2 table-responsive">
+      <table class="table table-hover dataTable" id="table-dynamic">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>{{"Transaction ID"|_}}</th>
+            <th>{{"Order ID"|_}}</th>
+            <th>{{"Order Title"|_}}</th>
+            <th>{{"Tracking Code"|_}}</th>
+            <th>{{"Card Number"|_}}</th>
+            <th>{{"Cost (Rial)"|_}}</th>            
+            <th>{{"Payment Date"|_}}</th>
+            <th>{{"Action"|_}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if lists %}
+              {% set i = 1 %}
+              {% for list in lists %}
+                <tr>
+                  <td>{{ i }}</td>
+                  <td>{{ list.id }}</td>
+                  <td><a href="order/{{list.order.id}}">{{ list.order.id }}</a></td>
+                  <td><a href="order/{{list.order.id}}">{{ list.order.title }}</a></td>
+                  <td>{{ list.tracking_code }}</td>
+                  <td>{{ list.card_number }}</td>
+                  <td>{{ list.price|number_format() }}</td>
+                  <td>{{ activeLocale == 'en' ? list.payment_date|date('Y/m/d - H:i') : list.payment_date|pDate('Y/m/d - H:i') }}</td>
+                  <td>           
+                    <a md-ink-ripple="#8C8C8C" href="#" class="" style="font-size:20px"
+                       data-request="{{__SELF__}}::onDelete"
+                       data-request-data="id: {{ list.id }}"
+                       data-request-confirm="{{'Are you sure for delete?'|_}}"
+                       data-request-success="$(this).parent().parent().remove();">
+                       <i style="float:none;" class="fa fa-trash-o" rel="popover" data-container="body" data-toggle="popover" data-placement="top" data-content="{{'Click to delete this record'|_}}" data-original-title="{{ 'Delete Record'|_ }}"></i>
+                    </a>
+                  </td>
+                </tr>
+                {% set i = i + 1 %}
+              {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

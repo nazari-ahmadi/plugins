@@ -1,0 +1,13 @@
+name: rantiz.gateway::lang.form.view.log_name
+form: $/rantiz/gateway/models/log/fields.yaml
+modelClass: Rantiz\Gateway\Models\Log
+defaultRedirect: rantiz/gateway/logs
+# Create page
+create:
+    redirect: 'rantiz/gateway/logs/preview/:id'
+    redirectClose: rantiz/gateway/logs
+
+# Update page
+update:
+    redirect: rantiz/gateway/logs/update/:id
+    redirectClose: rantiz/gateway/logs/preview/:id  

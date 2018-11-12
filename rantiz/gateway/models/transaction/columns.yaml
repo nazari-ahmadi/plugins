@@ -1,0 +1,57 @@
+columns:
+    id:
+        label: 'rantiz.gateway::lang.form.field.id'
+        type: number
+        searchable: true
+    tracking_code:
+        label: 'rantiz.gateway::lang.form.field.tracking_code'
+        type: number
+        searchable: true
+    user:
+        label: 'rantiz.gateway::lang.form.field.user'
+        type: text
+        searchable: true
+        select: concat(last_name,' ، ',first_name,' - ',username)
+        relation: user
+    # order:
+    #     label: 'rantiz.gateway::lang.form.field.order'
+    #     type: text
+    #     searchable: true
+    #     select: show_title
+    #     relation: order        
+    port:
+        label: 'rantiz.gateway::lang.form.field.port'
+        type: text
+        searchable: true
+    status:
+        label: 'rantiz.gateway::lang.form.field.status'
+        type: text
+        searchable: true
+    price:
+        label: 'rantiz.gateway::lang.form.field.price'
+        type: text
+        searchable: true
+    card_number:
+        label: 'rantiz.gateway::lang.form.field.card_number'
+        type: text
+        searchable: true
+    ip:
+        label: 'rantiz.gateway::lang.form.field.ip'
+        type: text
+        searchable: true
+    payment_date:
+        label: 'rantiz.gateway::lang.form.field.payment_at'
+        type: datetime
+        searchable: false
+    created_at:
+        label: 'rantiz.gateway::lang.form.field.created_at'
+        type: datetime
+        invisible: true
+    updated_at:
+        label: 'rantiz.gateway::lang.form.field.updated_at'
+        type: datetime
+        invisible: true
+    deleted_at:
+        label: 'rantiz.gateway::lang.form.field.deleted_at'
+        type: datetime
+        invisible: true

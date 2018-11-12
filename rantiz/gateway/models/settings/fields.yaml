@@ -1,0 +1,160 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+tabs:
+    fields:
+
+        # mellat gateway
+        mellat_username:
+            span: left
+            label: rantiz.gateway::lang.form.setting.mellat.username
+            comment: 
+            type: text
+            tab: rantiz.gateway::lang.form.setting.mellat.tab
+
+        mellat_password:
+            span: left
+            label: rantiz.gateway::lang.form.setting.mellat.password
+            comment: 
+            type: text
+            tab: rantiz.gateway::lang.form.setting.mellat.tab
+
+        mellat_terminalId:
+            span: left
+            label: rantiz.gateway::lang.form.setting.mellat.terminalId
+            comment: 
+            type: text
+            tab: rantiz.gateway::lang.form.setting.mellat.tab
+
+        # sadad gateway
+        sadad_merchant:
+            span: left
+            label: rantiz.gateway::lang.form.setting.sadad.merchant
+            comment: 
+            type: text
+            tab: rantiz.gateway::lang.form.setting.sadad.tab
+
+        sadad_terminalId:
+            span: left
+            label: rantiz.gateway::lang.form.setting.sadad.terminalId
+            comment: 
+            type: text
+            tab: rantiz.gateway::lang.form.setting.sadad.tab
+
+        sadad_transactionKey:
+            span: left
+            label: rantiz.gateway::lang.form.setting.sadad.transactionKey
+            comment: 
+            type: text
+            tab: rantiz.gateway::lang.form.setting.sadad.tab
+
+        # zarinpal gateway  
+        zarinpal_merchant:
+            span: left
+            label: rantiz.gateway::lang.form.setting.zarinpal.merchant
+            comment: 
+            type: text
+            placeholder: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+            tab: rantiz.gateway::lang.form.setting.zarinpal.tab
+        zarinpal_type:
+            span: left
+            label: rantiz.gateway::lang.form.setting.zarinpal.type
+            comment: rantiz.gateway::lang.form.setting.zarinpal.type_comment
+            type: text
+            tab: rantiz.gateway::lang.form.setting.zarinpal.tab
+        zarinpal_server:
+            span: left
+            label: rantiz.gateway::lang.form.setting.zarinpal.server
+            comment: rantiz.gateway::lang.form.setting.zarinpal.server_comment
+            type: text
+            tab: rantiz.gateway::lang.form.setting.zarinpal.tab
+        zarinpal_email:
+            span: left
+            label: rantiz.gateway::lang.form.setting.zarinpal.email
+            comment: 
+            type: text
+            placeholder: example@example.com
+            tab: rantiz.gateway::lang.form.setting.zarinpal.tab
+        zarinpal_mobile:
+            span: left
+            label: rantiz.gateway::lang.form.setting.zarinpal.mobile
+            comment: 
+            type: text
+            placeholder: 09xxxxxxxxx
+            tab: rantiz.gateway::lang.form.setting.zarinpal.tab
+        zarinpal_description:
+            span: left
+            label: rantiz.gateway::lang.form.setting.zarinpal.description
+            comment: 
+            type: text
+            tab: rantiz.gateway::lang.form.setting.zarinpal.tab
+
+        # payline gateway
+        payline_api:
+            span: left
+            label: rantiz.gateway::lang.form.setting.payline.api
+            comment: 
+            type: text
+            tab: rantiz.gateway::lang.form.setting.payline.tab
+
+        # parsian gateway
+        parsian_pin:
+            span: left
+            label: rantiz.gateway::lang.form.setting.parsian.pin
+            comment: 
+            type: text
+            tab: rantiz.gateway::lang.form.setting.parsian.tab   
+
+        # pasargad gateway
+        pasargad_merchant:
+            span: left
+            label: rantiz.gateway::lang.form.setting.pasargad.merchant
+            comment: 
+            type: text
+            tab: rantiz.gateway::lang.form.setting.pasargad.tab
+
+        pasargad_terminalId:
+            span: left
+            label: rantiz.gateway::lang.form.setting.pasargad.terminalId
+            comment: 
+            type: text
+            tab: rantiz.gateway::lang.form.setting.pasargad.tab
+
+        pasargad_certificate_path:
+            span: left
+            label: rantiz.gateway::lang.form.setting.pasargad.certificate_path
+            comment: 'Example: gateway/pasargad/certificate.xml'
+            type: text
+            tab: rantiz.gateway::lang.form.setting.pasargad.tab
+
+        # saman gateway
+        saman_merchant:
+            span: left
+            label: rantiz.gateway::lang.form.setting.saman.merchant
+            comment: 
+            type: text
+            tab: rantiz.gateway::lang.form.setting.saman.tab
+
+        saman_password:
+            span: left
+            label: rantiz.gateway::lang.form.setting.saman.password
+            comment: 
+            type: text
+            tab: rantiz.gateway::lang.form.setting.saman.tab
+
+       # All Settings
+        enable_port:
+            span: left
+            commentAbove: rantiz.gateway::lang.form.setting.enable_port_comment
+            label: rantiz.gateway::lang.form.setting.enable_port
+            type: radio
+            tab: rantiz.gateway::lang.form.setting.tab.settings
+
+        callback_url:
+            span: left
+            label: rantiz.gateway::lang.form.setting.callback_url
+            comment: 
+            type: dropdown
+            default: 
+            tab: rantiz.gateway::lang.form.setting.tab.settings

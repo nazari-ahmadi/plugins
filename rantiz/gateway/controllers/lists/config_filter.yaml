@@ -1,0 +1,29 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+
+    deleted:
+
+        # Filter name
+        label: rantiz.gateway::lang.form.filter.deleted
+
+        # Filter type
+        type: switch
+
+        # SQL Conditions
+        conditions:
+            - deleted <> '1'
+            - deleted = '1'
+
+    paymented_date:
+
+        # Filter name
+        label: rantiz.gateway::lang.form.filter.paymented_date
+
+        # Filter type
+        type: daterange
+
+        # SQL Conditions
+        conditions: payment_date >= ':after' AND payment_date <= ':before'

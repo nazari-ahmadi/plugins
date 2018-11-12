@@ -1,0 +1,13 @@
+name: rantiz.gateway::lang.form.view.name
+form: $/rantiz/gateway/models/transaction/fields.yaml
+modelClass: Rantiz\Gateway\Models\Transaction
+defaultRedirect: rantiz/gateway/lists
+# Create page
+create:
+    redirect: 'rantiz/gateway/lists/preview/:id'
+    redirectClose: rantiz/gateway/lists
+
+# Update page
+update:
+    redirect: rantiz/gateway/lists/update/:id
+    redirectClose: rantiz/gateway/lists/preview/:id  

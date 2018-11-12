@@ -1,0 +1,6 @@
+1.0.1:
+    - Initialize plugin.
+    - create_gateway_transactions_table.php
+    - create_gateway_status_log_table.php
+    - alter_id_in_transactions_table.php
+

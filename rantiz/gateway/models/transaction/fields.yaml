@@ -1,0 +1,16 @@
+fields:
+    id:
+        label: 'rantiz.gateway::lang.form.field.id'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    tracking_code:
+        label: 'rantiz.gateway::lang.form.field.tracking_code'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    price:
+        label: 'rantiz.gateway::lang.form.field.price'
+        oc.commentPosition: ''
+        span: auto
+        type: text

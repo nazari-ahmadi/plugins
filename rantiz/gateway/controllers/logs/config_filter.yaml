@@ -1,0 +1,15 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    paymented_date:
+
+        # Filter name
+        label: rantiz.gateway::lang.form.filter.log_date
+
+        # Filter type
+        type: daterange
+
+        # SQL Conditions
+        conditions: log_date >= ':after' AND log_date <= ':before'

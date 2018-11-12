@@ -1,0 +1,36 @@
+<div class="scoreboard-item title-value">
+    <h4><?= e(trans('rantiz.gateway::lang.form.view.user')) ?></h4>
+    <p><a href="<?= Backend::url('rainlab/user/users/preview/'.$formModel->user->id) ?>" target="_blank"><?= ($formModel->user->name ? $formModel->user->name : $formModel->user->username)?></a></p>
+    <p class="description">
+        <a href="mailto:<?= e($formModel->user->email) ?>">
+            <?= $formModel->user->email ?>
+        </a>
+    </p>
+</div>
+<div class="scoreboard-item title-value" title="">
+    <h4><?= e(trans('rantiz.gateway::lang.form.field.log_id')) ?></h4>
+    <p><?= $formModel->id ?></p>
+</div>
+<div class="scoreboard-item title-value" title="">
+    <h4><?= e(trans('rantiz.gateway::lang.form.field.id')) ?></h4>
+    <p><a href="<?= Backend::url('rantiz/gateway/lists/preview/'.$formModel->transaction_id) ?>" target="_blank"><?= $formModel->transaction_id ?></a></p>
+</div>
+<?php if ($formModel->log_date): ?>
+    <div class="scoreboard-item title-value" title="<?= $formModel->log_date->toDateTimeString() ?>">
+        <h4><?= e(trans('rantiz.gateway::lang.form.field.log_date')) ?></h4>
+        <p><?= $formModel->log_date->toFormattedDateString() ?></p>
+        <p><?= $formModel->log_date->toTimeString() ?></p>
+        <p class="description">
+            <?= $formModel->log_date->diffForHumans() ?>
+        </p>
+    </div>
+<?php endif ?>
+<div></div>
+<div class="scoreboard-item title-value" title="">
+    <h4><?= e(trans('rantiz.gateway::lang.form.field.result_code')) ?></h4>
+    <p><?= $formModel->result_code ?></p>
+</div>
+<div class="scoreboard-item title-value" title="">
+    <h4><?= e(trans('rantiz.gateway::lang.form.field.result_message')) ?></h4>
+    <p><?= $formModel->result_message ?></p>
+</div>

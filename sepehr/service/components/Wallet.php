@@ -2,10 +2,15 @@
 
 use Auth;
 use Cms\Classes\ComponentBase;
+use Exception;
 use Flash;
 use Redirect;
 use Sepehr\Service\Models\Service;
 use RainLab\User\Models\User;
+use Gateway;
+use Lang;
+use Session;
+
 
 class Wallet extends ComponentBase
 {
@@ -41,9 +46,10 @@ class Wallet extends ComponentBase
 
     public function onWalletCharge()
     {
-        Flash::success('اتصال به درگاه بانک');
-        return true;
+        $price=post('price');
+        return Redirect::to(url('payment'))->with(['price'=>$price]);
     }
+
 
     public function onServicePayment()
     {
@@ -52,23 +58,22 @@ class Wallet extends ComponentBase
         if ($this->PayService($service)){
             Flash::success('پرداخت با موفقیت انجام شد');
         }else{
-            if ($this->onWalletCharge()){
-                if ($this->PayService($service)){
-                    Flash::success('پرداخت با موفقیت انجام شد');
-                }
-            }
+            Session::put('servicePay',$service->id);
+            $servicePay=Session::get('servicePay');
+            $price=$this->getNotPay($service);
+            return Redirect::to(url('payment'))->with(['price'=>$price,'servicePay'=>$servicePay]);
         }
 
     }
-    
-    public function PlusWallet($amount,$service,$boolPlus)
+
+    public function PlusWallet($amount,$user,$boolPlus)
     {
         if ($boolPlus){
-            $service->wallet_charge += $amount;
+            $user->wallet_charge += $amount;
         }else{
-            $service->wallet_charge -= $amount;
+            $user->wallet_charge -= $amount;
         }
-        $service->save();
+        $user->save();
     }
 
     public function getPay($service)
@@ -102,9 +107,9 @@ class Wallet extends ComponentBase
             $service->save();
             return true;
         }else{
-            $user=User::getUser($service->user_id);
+            $user=Auth::getUser($service->user_id);
             if ($user->wallet_charge>=$notPayment){
-                $user->wallet_charge -= $notPayment;
+                $this->PlusWallet($notPayment,$user,false);
                 $payList=$service->payments;
                 $payList[]=['payment_status_id'=>1 , 'amount'=>$notPayment,'payment_date'=>''];
                 $service->payments=$payList;
@@ -115,7 +120,7 @@ class Wallet extends ComponentBase
             }else{
                 if ($user->wallet_charge>=1000){
                     $amount=$user->wallet_charge;
-                    $user->wallet_charge = 0;
+                    $this->PlusWallet($amount,$user,false);
                     $payList=$service->payments;
                     $payList[]=['payment_status_id'=>1 , 'amount'=>$amount,'payment_date'=>''];
                     $service->payments=$payList;

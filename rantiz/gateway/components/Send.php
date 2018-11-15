@@ -77,16 +77,15 @@ class Send extends ComponentBase
                 $port = Gateway::mellat();
                 break;
         }
-
         if(!$price = Session::get('price'))
         {
             //return Redirect::to(url(''));
-            throw new ApplicationException("Error Processing Request", 1);            
+            throw new ApplicationException("مبلغ نمی تواند خالی باشد");
         }
 
         try {
             $gateway = $port;
-            $gateway->setCallback(url('payment'));
+            $gateway->setCallback(url('gateway'));
             $gateway->price($price)->ready();          
             return $gateway->redirect();
 

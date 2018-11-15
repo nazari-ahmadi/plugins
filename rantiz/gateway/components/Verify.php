@@ -1,16 +1,15 @@
 <?php namespace Rantiz\Gateway\Components;
 
-use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
+use Exception;
+use Flash;
 use Gateway;
 use Lang;
 use Redirect;
-use ApplicationException;
-use Flash;
-use Carbon\Carbon;
-use Ls\Details\Models\ProccessRegisterUserCourse;
-use Ls\Details\Models\Course;
 use Auth;
+use Sepehr\Service\Components\Wallet;
+use Sepehr\Service\Models\Service;
+use Session;
 
 class Verify extends ComponentBase
 {
@@ -72,16 +71,17 @@ class Verify extends ComponentBase
             {
                 return Redirect::to(url("bankError"))->withErrors(["code" => 3, "title" => "چنین رکورد پرداختی موجود نمی باشد"]);                                        
             }
-
             if($gateway->statusCode() == "0")
             {
+
+                $this->checkIfPay();
                 $this->page['trackingCode']  = $gateway->trackingCode();
                 $this->page['refId']         = $gateway->refId();
                 $this->page['cardNumber']    = $gateway->cardNumber();
                 $this->page['amount']        = $gateway->amount();
                 $this->page['transactionID'] = $gateway->transactionId();
                 $this->page['port']          = $gateway->getPortName();
-                $this->page['message']       = Lang::get('rantiz.gateway::lang.components.success_message');   
+                $this->page['message']       = Lang::get('rantiz.gateway::lang.components.success_message');
             }
             else if($gateway->statusCode() == "-1")
             {
@@ -96,5 +96,17 @@ class Verify extends ComponentBase
      
             echo $e->getMessage();
         }  
+    }
+
+    public function checkIfPay()
+    {
+        if ($id=Session::get('servicePay')!=null){
+            $wallet=new Wallet();
+            $service=Service::find($id);
+            if ($wallet->PayService($service)){
+                Session::forget('servicePay');
+                Flash::success('پرداخت با موفقیت انجام شد');
+            }
+        }
     }
 }

@@ -59,6 +59,8 @@ class Verify extends ComponentBase
      
             $gateway = Gateway::verify($id);
 
+           // throw new \ApplicationException($gateway->statusCode());
+
             if($gateway == "refresh")
             {
                 return Redirect::to(url(""));
@@ -73,7 +75,9 @@ class Verify extends ComponentBase
             }
             if($gateway->statusCode() == "0")
             {
-
+                $user=Auth::user();
+                $user->wallet_charge += $gateway->amount();
+                $user->save();
                 $this->checkIfPay();
                 $this->page['trackingCode']  = $gateway->trackingCode();
                 $this->page['refId']         = $gateway->refId();

@@ -21,6 +21,9 @@ tabs:
             tab: مرسوله
             form:
                 fields:
+                    id:
+                        label: 'id'
+                        type: text
                     receiver_postal_code:
                         label: 'کد پستی مقصد'
                         span: auto

@@ -207,6 +207,10 @@ class Service extends Model
         return ($user->first_name . ' ' . $user->last_name);
     }
 
+    public function idConstructor(){
+
+    }
+
     public $belongsTo = [
         'user' => 'RainLab\User\Models\User',
         'status' => Status::class

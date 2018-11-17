@@ -68,9 +68,11 @@ class Postman extends FormWidgetBase
         }
     }
     private function checkAcceptance($postmans){
-        foreach ($postmans as $package){
-            if ($package['acceptance_id']==2){
-                return true;
+        if($postmans){
+            foreach ($postmans as $package){
+                if ($package['acceptance_id']==2){
+                    return true;
+                }
             }
         }
         return false;

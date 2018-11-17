@@ -73,11 +73,11 @@ class Verify extends ComponentBase
             {
                 return Redirect::to(url("bankError"))->withErrors(["code" => 3, "title" => "چنین رکورد پرداختی موجود نمی باشد"]);                                        
             }
-            if($gateway->statusCode() == "0")
+            if($gateway->statusCode() == null)
             {
-                $user=Auth::user();
+                $user=Auth::getUser();
                 $user->wallet_charge += $gateway->amount();
-                $user->save();
+                $user->forceSave();
                 $this->checkIfPay();
                 $this->page['trackingCode']  = $gateway->trackingCode();
                 $this->page['refId']         = $gateway->refId();

@@ -21,28 +21,29 @@
             <th>عملیات</th>
         </tr>
         </thead>
-        <tbody>
-        {% set cnt = 1 %}
-        {% for key,item in lists %}
+        <tbody class="{{ lists[0].id ? '' : 'hide' }}">
 
-            <tr>
-                <td>{{ cnt }}</td>
-                <td>{{ item.sender_postal_code }}</td>
-                <td>{{ item.sender_address }}</td>
-                <td>{{ service.getStatus(item.status_id) }}</td>
-                <td>{{ item.created_at }}</td>
-                <td>
-                    <a href="{{ url('service-delivery') ~ '/' ~ item.id }}"
-                       class="btn btn-success"
-                    >
-                        تحویل گرفتن بسته
-                    </a>
-                </td>
-            </tr>
-            {% set cnt = cnt + 1 %}
-        {% endfor %}
+            {% set cnt = 1 %}
+            {% for key,item in lists %}
+                <tr>
+                    <td>{{ cnt }}</td>
+                    <td>{{ item.sender_postal_code }}</td>
+                    <td>{{ item.sender_address }}</td>
+                    <td>{{ item.status_id ? service.getStatus(item.status_id) : '' }}</td>
+                    <td>{{ item.created_at }}</td>
+                    <td>
+                        <a href="{{ url('service-delivery') ~ '/' ~ item.id }}"
+                           class="btn btn-success"
+                        >
+                            تحویل گرفتن بسته
+                        </a>
+                    </td>
+                </tr>
+                {% set cnt = cnt + 1 %}
+            {% endfor %}
+
         </tbody>
     </table>
-{% endif %}
 
+{% endif %}
 

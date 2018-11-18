@@ -75,10 +75,7 @@ class Verify extends ComponentBase
             }
             if($gateway->statusCode() == null)
             {
-                $user=Auth::getUser();
-                $user->wallet_charge += $gateway->amount();
-                $user->forceSave();
-                $this->checkIfPay();
+                $this->checkIfPay($gateway);
                 $this->page['trackingCode']  = $gateway->trackingCode();
                 $this->page['refId']         = $gateway->refId();
                 $this->page['cardNumber']    = $gateway->cardNumber();
@@ -102,15 +99,31 @@ class Verify extends ComponentBase
         }  
     }
 
-    public function checkIfPay()
+    public function checkIfPay($gateway)
     {
-        if ($id=Session::get('servicePay')!=null){
-            $wallet=new Wallet();
-            $service=Service::find($id);
+        $wallet=new Wallet();
+        $user=Auth::getUser();
+        $id=Session::get('servicePay');
+        $service=Service::find($id);
+        if ($id!=null){
             if ($wallet->PayService($service)){
                 Session::forget('servicePay');
                 Flash::success('پرداخت با موفقیت انجام شد');
+            }else{
+            $amount=$gateway->amount();
+            $payList=$service->payments;
+            $payList[]=['payment_status_id'=>4 , 'amount'=>$amount,'payment_date'=>''];
+            $service->payments=$payList;
+            $service->payment_status=1;
+            $service->forceSave();
+            $user->wallet_charge = 0;
+            $user->forceSave();
+            Session::forget('servicePay');
+            Flash::success('پرداخت با موفقیت انجام شد');
             }
+        }else{
+            $user->wallet_charge += $gateway->amount();
+            $user->forceSave();
         }
     }
 }

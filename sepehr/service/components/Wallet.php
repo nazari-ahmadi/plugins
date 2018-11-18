@@ -58,10 +58,10 @@ class Wallet extends ComponentBase
         if ($this->PayService($service)){
             Flash::success('پرداخت با موفقیت انجام شد');
         }else{
+            $user=Auth::getUser();
             Session::put('servicePay',$service->id);
-            $servicePay=Session::get('servicePay');
-            $price=$this->getNotPay($service);
-            return Redirect::to(url('payment'))->with(['price'=>$price,'servicePay'=>$servicePay]);
+            $price=$this->getNotPay($service) - $user->wallet_charge;
+            return Redirect::to(url('payment'))->with(['price'=>$price]);
         }
 
     }
@@ -104,7 +104,7 @@ class Wallet extends ComponentBase
         $notPayment=$this->getNotPay($service);
         if ($notPayment==0){
             $service->payment_status=1;
-            $service->save();
+            $service->forceSave();
             return true;
         }else{
             $user=Auth::getUser($service->user_id);
@@ -114,8 +114,8 @@ class Wallet extends ComponentBase
                 $payList[]=['payment_status_id'=>1 , 'amount'=>$notPayment,'payment_date'=>''];
                 $service->payments=$payList;
                 $service->payment_status=1;
-                $service->save();
-                $user->save();
+                $service->forceSave();
+                $user->forceSave();
                 return true;
             }else{
                 if ($user->wallet_charge>=1000){
